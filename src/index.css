@@ -1,0 +1,16 @@
+@font-face {
+    font-family: "Comforta";
+    src: url("./assets/fonts/Comforta.ttf");
+}
+@font-face {
+    font-family: 'Assistant';
+    src: url("./assets/fonts/Assistant/Assistant.ttf");
+}
+
+p{
+    font-family: 'Assistant';
+}
+
+a, h1{
+    font-family: 'Comforta';
+}
