@@ -21,6 +21,32 @@ const TrendingMovies = ({ data }) => {
           spaceBetween={5}
           slidesPerView={8.5}
           watchSlidesProgress={true}
+          breakpoints={{
+            320: {
+              slidesPerView: 2,
+              spaceBetween: 100,
+            },
+            400: {
+              slidesPerView: 2,
+              spaceBetween: 10,
+            },
+            480: {
+              slidesPerView: 3,
+              spaceBetween: 30,
+            },
+            768: {
+              slidesPerView: 4,
+              spaceBetween: 10,
+            },
+            1141: {
+              slidesPerView: 6,
+              spaceBetween: 10,
+            },
+            1400: {
+              slidesPerView: 8,
+              spaceBetween: 10,
+            },
+          }}
         >
           {data !== null &&
             data.results.map((movie, key) => {

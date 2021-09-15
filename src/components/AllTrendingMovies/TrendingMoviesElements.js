@@ -5,7 +5,6 @@ import { PrimaryColor } from "../GlobalElements";
 export const AllMovies = styled.div`
   display: flex;
   justify-content: center;
-  width: 100vw;
 `;
 
 export const Title = styled.p`
@@ -27,6 +26,10 @@ export const ThumbImg = styled.div`
   background-position: center;
   cursor: pointer;
   transition: 0.5s ease-in-out;
+  @media screen and (max-width: 320px) {
+    width: 8rem;
+    height: 14rem;
+  }
 `;
 
 export const Movies = styled(Swiper)`

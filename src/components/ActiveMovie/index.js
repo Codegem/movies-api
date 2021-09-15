@@ -29,7 +29,7 @@ const ActiveMovie = ({ activeData, children }) => {
           <MovieTitle>{activeData.original_title}</MovieTitle>
           <Vote>
             <StarRatings
-              rating={(10 + (activeData.vote_average * 10 - 100) / 10) / 2}
+              rating={(10 - (100 - activeData.vote_average * 10) / 10) / 2}
               numberOfStars={5}
               starRatedColor="yellow"
               starEmptyColor="grey"
@@ -55,7 +55,9 @@ const ActiveMovie = ({ activeData, children }) => {
               <FavoriteIcon />
             </ButtonFavorite>
           </ButtonWrapper>
-          <DescriptionText>{activeData.overview}</DescriptionText>
+          <DescriptionText>
+            {activeData.overview.slice(0, 150)}...
+          </DescriptionText>
         </AboutMovie>
       </AboutMovieWrapper>
     </>
