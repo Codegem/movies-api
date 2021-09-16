@@ -1,12 +1,6 @@
 import React from "react";
 import { MenuLink, MenuWrapper } from "./MenuElements";
-
-const MenuItems = [
-  { name: "home", to: "/" },
-  { name: "Tv Shows", to: "/shows" },
-  { name: "Movies", to: "/Movies" },
-  { name: "Upcoming", to: "/upcoming" },
-];
+import { MenuItems } from "./MenuData";
 
 const Menu = () => {
   return (

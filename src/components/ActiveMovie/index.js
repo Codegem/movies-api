@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { ImageJoin } from "../../helpers/image/Image";
 import {
   MovieImage,
@@ -16,27 +16,27 @@ import {
   AboutMovieWrapper,
 } from "./ActiveElements";
 import useMovies from "../../hooks/getMovies";
-import StarRatings from "react-star-ratings";
+import Star from "../../helpers/stars/Stars";
+import VideoModal from "../Modal";
 
 const ActiveMovie = ({ activeData, children }) => {
   const backgroundImg = ImageJoin(activeData.backdrop_path);
   const { genre } = useMovies();
+  const { getRating } = Star();
+
+  const [modalIsOpen, setIsOpen] = useState(false);
+
+  const modalToggle = () => {
+    setIsOpen(!modalIsOpen);
+  };
+
   return (
     <>
       <MovieImage src={backgroundImg}>{children}</MovieImage>
       <AboutMovieWrapper>
         <AboutMovie>
           <MovieTitle>{activeData.original_title}</MovieTitle>
-          <Vote>
-            <StarRatings
-              rating={(10 - (100 - activeData.vote_average * 10) / 10) / 2}
-              numberOfStars={5}
-              starRatedColor="yellow"
-              starEmptyColor="grey"
-              starDimension="20px"
-              starSpacing="2px"
-            />
-          </Vote>
+          <Vote>{getRating(activeData.vote_average, "20px", "2px")}</Vote>
           <Genre>
             {genre !== null &&
               genre.map((g) => {
@@ -48,7 +48,7 @@ const ActiveMovie = ({ activeData, children }) => {
               })}
           </Genre>
           <ButtonWrapper>
-            <ButtonPlay>
+            <ButtonPlay onClick={modalToggle}>
               <PlayIcon />
             </ButtonPlay>
             <ButtonFavorite>
@@ -60,6 +60,7 @@ const ActiveMovie = ({ activeData, children }) => {
           </DescriptionText>
         </AboutMovie>
       </AboutMovieWrapper>
+      <VideoModal open={modalIsOpen} toggle={modalToggle} />
     </>
   );
 };

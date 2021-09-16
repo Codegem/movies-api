@@ -7,10 +7,10 @@ export const MoviePoster = styled(Swiper)``;
 
 export const AboutMovieWrapper = styled.div`
   position: absolute;
-  top: 9vw;
-  left: 5vw;
+  top: 6.5rem;
+  left: 6rem;
   max-width: 50rem;
-  height: 50rem;
+  max-height: 50rem;
 `;
 
 export const AboutMovie = styled.div`
@@ -58,9 +58,12 @@ export const Vote = styled.div`
 
 export const ButtonPlay = styled(ButtonStyle)`
   background: rgb(10, 72, 71);
+  cursor: pointer;
 `;
 
-export const ButtonFavorite = styled(ButtonStyle)``;
+export const ButtonFavorite = styled(ButtonStyle)`
+  cursor: pointer;
+`;
 
 export const DescriptionText = styled.p`
   color: rgb(233, 237, 240);
