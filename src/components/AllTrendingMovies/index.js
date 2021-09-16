@@ -6,7 +6,7 @@ import { ImageJoin } from "../../helpers/image/Image";
 import { SwiperSlide } from "swiper/react";
 
 const TrendingMovies = ({ data }) => {
-  const [activeData, setActiveData] = useState(data.results[0]);
+  const [activeData, setActiveData] = useState(data[0]);
 
   const selectHandler = (movie) => {
     setActiveData(movie);
@@ -49,7 +49,7 @@ const TrendingMovies = ({ data }) => {
           }}
         >
           {data !== null &&
-            data.results.map((movie, key) => {
+            data.map((movie, key) => {
               return (
                 <SwiperSlide
                   key={key}

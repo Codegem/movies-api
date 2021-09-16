@@ -4,7 +4,7 @@ const Logo = () => {
   return (
     <>
       <LogoWrapper>
-        <LogoLink to="/">MovieDb</LogoLink>
+        <LogoLink to="/movies-api/">MovieDb</LogoLink>
       </LogoWrapper>
     </>
   );

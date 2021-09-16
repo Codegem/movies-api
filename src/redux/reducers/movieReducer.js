@@ -1,23 +1,29 @@
-import { QUERY_MOVIE, GET_MOVIES } from "../action-types/movieActionTypes";
+import * as type from "../action-types/movieActionTypes";
 
 const initialState = {
-  movieList: {},
+  trendingMovieList: {},
+  searchMovieResults: {},
+  trendingTvShowsList: {},
 };
 
-export const movieReducer = (state = initialState, action) => {
+export const trendingMovieReducer = (state = initialState, action) => {
   switch (action.type) {
-    case GET_MOVIES: {
-      const { data } = action;
+    case type.GET_TRENDING_MOVIE.typeStr: {
       return {
         ...state,
-        movieList: [...state.movieList, action],
+        trendingMovieList: action.payload,
       };
     }
-    case QUERY_MOVIE: {
-      const { query } = action;
+    case type.SEARCH_MOVIE.typeStr: {
       return {
         ...state,
-        query,
+        searchMovieResults: action.payload,
+      };
+    }
+    case type.GET_TRENDING_TVSHOWS.typeStr: {
+      return {
+        ...state,
+        searchMovieResults: action.payload,
       };
     }
     default:

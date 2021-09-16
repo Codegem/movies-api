@@ -1,13 +1,19 @@
-// import { useDispatch } from "react-redux";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
 import TrendingMovies from "../../components/AllTrendingMovies";
-import useMovies from "../../hooks/getMovies";
+import { useSelector } from "react-redux";
+import { trendingMovies } from "../../redux/actions/movieActions";
 
 const Home = () => {
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
-  const { data } = useMovies();
+  const movies = useSelector((state) => state.movies.trendingMovieList.results);
 
-  return <>{data !== null && <TrendingMovies data={data} />}</>;
+  useEffect(() => {
+    dispatch(trendingMovies);
+  }, []);
+
+  return <>{movies !== undefined && <TrendingMovies data={movies} />}</>;
 };
 
 export default Home;
