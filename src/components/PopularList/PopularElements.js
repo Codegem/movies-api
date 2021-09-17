@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Swiper, SwiperSlide } from "swiper/react";
+import { Swiper } from "swiper/react";
 import { PrimaryColor } from "../GlobalElements";
 
 export const TestContainer = styled.div`

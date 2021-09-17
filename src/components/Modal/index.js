@@ -6,7 +6,7 @@ import { movieTrailer, tvshowTrailer } from "../../redux/actions/movieActions";
 
 const customStyles = {
   content: {
-    top: "30rem",
+    top: "20rem",
     left: "50%",
     right: "auto",
     bottom: "auto",
@@ -32,8 +32,8 @@ const VideoModal = ({ toggle, open, data }) => {
   );
 
   const opts = {
-    height: "720",
-    width: "1280",
+    height: "480",
+    width: "360",
     playerVars: {
       autoplay: 1,
     },
@@ -46,8 +46,6 @@ const VideoModal = ({ toggle, open, data }) => {
           ? movieTrailer(data.id)
           : tvshowTrailer(data.id)
       );
-      dispatch(tvshowTrailer(data.id));
-    } else {
       return;
     }
   }, []);
@@ -60,7 +58,10 @@ const VideoModal = ({ toggle, open, data }) => {
       ariaHideApp={false}
     >
       {trailer !== undefined && (
-        <YouTube videoId={trailer[0].key} opts={opts} />
+        <YouTube
+          videoId={trailer[0].key !== undefined && trailer[0].key}
+          opts={opts}
+        />
       )}
     </Modal>
   );

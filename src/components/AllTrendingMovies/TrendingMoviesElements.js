@@ -13,6 +13,10 @@ export const Title = styled.p`
   left: 3rem;
   font-size: 1.5rem;
   color: ${PrimaryColor};
+  @media screen and (max-width: 480px) {
+    z-index: 20;
+    bottom: 17.5rem;
+  }
 `;
 
 export const ThumbImg = styled.div`
@@ -26,9 +30,10 @@ export const ThumbImg = styled.div`
   background-position: center;
   cursor: pointer;
   transition: 0.5s ease-in-out;
-  @media screen and (max-width: 320px) {
+  @media screen and (max-width: 480px) {
+    z-index: 20;
     width: 8rem;
-    height: 14rem;
+    height: 13rem;
   }
 `;
 
@@ -42,6 +47,13 @@ export const Movies = styled(Swiper)`
     width: 10rem;
     &:hover ${ThumbImg} {
       height: 16.5rem;
+    }
+  }
+  @media screen and (max-width: 480px) {
+    z-index: 20;
+    .swiper-slide {
+      height: 14rem;
+      width: 10rem;
     }
   }
 `;

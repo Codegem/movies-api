@@ -5,12 +5,36 @@ import { BsPlayFill } from "react-icons/bs";
 import { IoMdAdd } from "react-icons/io";
 export const MoviePoster = styled(Swiper)``;
 
+export const Overlay = styled.div`
+  display: none;
+  @media screen and (max-width: 480px) {
+    display: block;
+    height: 80vh;
+    width: 100vw;
+    position: absolute;
+    top: 20vh;
+    z-index: 10;
+    background: linear-gradient(
+      to bottom,
+      rgba(15, 12, 41, 0),
+      rgba(36, 36, 62, 1),
+      rgba(48, 43, 99, 1)
+    );
+    background-blend-mode: screen;
+  }
+`;
+
 export const AboutMovieWrapper = styled.div`
   position: absolute;
   top: 6.5rem;
   left: 6rem;
   max-width: 50rem;
   max-height: 50rem;
+  @media screen and (max-width: 480px) {
+    z-index: 20;
+    top: 5rem;
+    left: 2rem;
+  }
 `;
 
 export const AboutMovie = styled.div`
@@ -22,6 +46,10 @@ export const AboutMovie = styled.div`
 export const MovieTitle = styled.h1`
   font-size: 3.5rem;
   color: rgb(233, 237, 240);
+  @media screen and (max-width: 480px) {
+    font-size: 2.5rem;
+    max-width: 80%;
+  }
 `;
 
 export const MovieImage = styled.div`
@@ -31,11 +59,18 @@ export const MovieImage = styled.div`
   background-image: url(${({ src }) => src});
   background-size: 100% 100%;
   background-repeat: no-repeat;
+  @media screen and (max-width: 480px) {
+    background-size: 100% 62%;
+  }
 `;
 
 export const Genre = styled.div`
   display: flex;
   margin: 0.5rem 0;
+  @media screen and (max-width: 480px) {
+    max-width: 80%;
+    flex-wrap: wrap;
+  }
 `;
 
 export const GenreItem = styled.p`
@@ -45,6 +80,9 @@ export const GenreItem = styled.p`
     margin-right: 1rem;
     padding-right: 1rem;
     border-right: 1px solid rgba(147, 148, 150, 0.6);
+  }
+  @media screen and (max-width: 480px) {
+    font-size: 1rem;
   }
 `;
 
@@ -72,7 +110,8 @@ export const DescriptionText = styled.p`
   font-size: 1.1rem;
   line-height: 1.6rem;
   @media screen and (max-width: 480px) {
-    width: 80%;
+    text-indent: 15px;
+    width: 95%;
     margin-top: 2rem;
   }
 `;
