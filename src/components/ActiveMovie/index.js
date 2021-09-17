@@ -35,8 +35,15 @@ const ActiveMovie = ({ activeData, children }) => {
       <MovieImage src={backgroundImg}>{children}</MovieImage>
       <AboutMovieWrapper>
         <AboutMovie>
-          <MovieTitle>{activeData.original_title}</MovieTitle>
-          <Vote>{getRating(activeData.vote_average, "20px", "2px")}</Vote>
+          <MovieTitle>
+            {activeData.original_title !== undefined
+              ? activeData.original_title
+              : activeData.name}
+          </MovieTitle>
+          <Vote>
+            {getRating(activeData.vote_average, "20px", "2px")}
+            {activeData.vote_average}
+          </Vote>
           <Genre>
             {genre !== null &&
               genre.map((g) => {
@@ -60,7 +67,9 @@ const ActiveMovie = ({ activeData, children }) => {
           </DescriptionText>
         </AboutMovie>
       </AboutMovieWrapper>
-      <VideoModal open={modalIsOpen} toggle={modalToggle} />
+      {modalIsOpen && (
+        <VideoModal open={modalIsOpen} toggle={modalToggle} data={activeData} />
+      )}
     </>
   );
 };
