@@ -14,6 +14,7 @@ import {
   FavoriteIcon,
   ButtonWrapper,
   AboutMovieWrapper,
+  Overlay,
 } from "./ActiveElements";
 import useMovies from "../../hooks/getMovies";
 import Star from "../../helpers/stars/Stars";
@@ -32,6 +33,7 @@ const ActiveMovie = ({ activeData, children }) => {
 
   return (
     <>
+      <Overlay />
       <MovieImage src={backgroundImg}>{children}</MovieImage>
       <AboutMovieWrapper>
         <AboutMovie>

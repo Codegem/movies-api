@@ -22,7 +22,7 @@ const Home = () => {
   }, []);
 
   return (
-    <div style={{ "margin-top": "10vh" }}>
+    <div style={{ marginTop: "10vh" }}>
       <PopularSection data={popularMoviesList} title="Popular Movies" />
       <PopularSection data={popularShowsList} title="Popular TV Shows" />
     </div>
