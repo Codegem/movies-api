@@ -1,19 +1,32 @@
 import { useEffect } from "react";
-import { useDispatch } from "react-redux";
-import TrendingMovies from "../../components/AllTrendingMovies";
-import { useSelector } from "react-redux";
-import { trendingMovies } from "../../redux/actions/movieActions";
+import { useDispatch, useSelector } from "react-redux";
+import PopularSection from "../../components/PopularList";
+import {
+  popularTVShows,
+  popularMovies,
+} from "../../redux/actions/movieActions";
 
 const Home = () => {
   const dispatch = useDispatch();
 
-  const movies = useSelector((state) => state.movies.trendingMovieList.results);
+  const popularMoviesList = useSelector(
+    (state) => state.movies.popularMovies.results
+  );
+  const popularShowsList = useSelector(
+    (state) => state.movies.popularTvShows.results
+  );
 
   useEffect(() => {
-    dispatch(trendingMovies);
+    dispatch(popularTVShows);
+    dispatch(popularMovies);
   }, []);
 
-  return <>{movies !== undefined && <TrendingMovies data={movies} />}</>;
+  return (
+    <div style={{ "margin-top": "10vh" }}>
+      <PopularSection data={popularMoviesList} title="Popular Movies" />
+      <PopularSection data={popularShowsList} title="Popular TV Shows" />
+    </div>
+  );
 };
 
 export default Home;
