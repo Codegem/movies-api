@@ -44,3 +44,8 @@ export const GET_TVSHOW_VIDEO = {
   typeStr: "GET_TVSHOW_VIDEO",
   axiosUrl: `${BASE_URL}/tv`,
 };
+
+export const GET_INFO = {
+  typeStr: "GET_INFO",
+  axiosUrl: `${BASE_URL}`,
+};

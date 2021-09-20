@@ -37,8 +37,8 @@ const MenuClose = keyframes`
 export const MobileMenuWrapper = styled.div`
   position: absolute;
   z-index: 900;
-  top: 0;
-  left: 0;
+  top: 0.5rem;
+  left: -0.5rem;
   width: 100vw;
   height: 100vh;
   background-color: rgba(0, 0, 0, 0.6);

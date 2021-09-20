@@ -8,6 +8,8 @@ const initialState = {
   popularMovies: {},
   movieTrailer: {},
   tvshowTrailer: {},
+  upcomingMovie: {},
+  mediaInfo: {},
 };
 
 export const trendingMovieReducer = (state = initialState, action) => {
@@ -52,6 +54,18 @@ export const trendingMovieReducer = (state = initialState, action) => {
       return {
         ...state,
         tvshowTrailer: action.payload,
+      };
+    }
+    case type.GET_UPCOMING_MOVIE.typeStr: {
+      return {
+        ...state,
+        upcomingMovie: action.payload,
+      };
+    }
+    case type.GET_INFO.typeStr: {
+      return {
+        ...state,
+        mediaInfo: action.payload,
       };
     }
     default:
