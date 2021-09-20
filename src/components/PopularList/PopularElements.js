@@ -6,9 +6,12 @@ export const TestContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  margin-top: 5vh;
+  margin-top: 1vh;
   background: url(${({ bg }) => bg});
   background-size: cover;
+  @media screen and (max-width: 480px) {
+    margin-top: 12vw;
+  }
 `;
 
 export const AllMovies = styled.div`
@@ -16,27 +19,35 @@ export const AllMovies = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
+  margin-top: 3.5rem;
+  @media screen and (max-width: 480px) {
+    margin-top: -10vw;
+  }
 `;
 
 export const Title = styled.p`
-  bottom: 20.5rem;
-  margin-left: 2.5rem;
+  text-align: center;
   font-size: 1.5rem;
+  margin-top: 5rem;
   color: ${PrimaryColor};
+  @media screen and (max-width: 480px) {
+    text-align: left;
+    margin-left: 1.5rem;
+  }
 `;
 
 export const ThumbImg = styled.div`
   height: 13rem;
   width: 10rem;
   background-image: url(${({ src }) => src});
-  background-size: cover;
+  background-size: 100% 100%;
   background-repeat: no-repeat;
   background-position: center;
   cursor: pointer;
   transition: 0.5s ease-in-out;
-  @media screen and (max-width: 320px) {
-    width: 8rem;
-    height: 14rem;
+  @media screen and (max-width: 480px) {
+    height: 75vw;
+    width: 10rem;
   }
 `;
 
@@ -46,17 +57,36 @@ export const Movies = styled(Swiper)`
   width: calc(100% - 5rem);
   margin-top: 0.5rem;
   .swiper-slide {
-    height: 17rem;
+    height: 18rem;
     width: 10rem;
     &:hover ${ThumbImg} {
-      transform: scale(1.1);
+    }
+  }
+  @media screen and (max-width: 480px) {
+    width: 95vw;
+    padding: 1rem 0.5rem;
+    .swiper-slide {
+      height: 70vw;
+      width: 10vw;
     }
   }
 `;
 
 export const Text = styled.p`
+  max-width: 10rem;
+  text-align: center;
   margin-top: 0.5rem;
   font-size: 1.425rem;
   text-align: center;
   color: white;
+  @media screen and (max-width: 480px) {
+    display: none;
+  }
+`;
+
+export const Rating = styled.div`
+  display: flex;
+  justify-content: center;
+  width: 10rem;
+  margin-top: 0.5rem;
 `;

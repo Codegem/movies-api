@@ -7,6 +7,11 @@ export const InputWrapper = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
+  @media screen and (max-width: 480px) {
+    position: absolute;
+    right: 4rem;
+    top: 2.9rem;
+  }
 `;
 
 export const Logo = styled(Search)`
@@ -16,5 +21,4 @@ export const Logo = styled(Search)`
   width: 2.5rem;
   height: 2.5rem;
   cursor: pointer;
-  border-radius: 20%;
 `;

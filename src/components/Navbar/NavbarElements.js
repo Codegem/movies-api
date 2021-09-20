@@ -18,14 +18,23 @@ export const Navbar = styled.div`
   }
 `;
 
-export const MobileIcon = styled.div`
+export const MobileWrapper = styled.div`
+  position: fixed;
+  z-index: 999;
   display: none;
   @media screen and (max-width: 480px) {
-    display: block;
-    cursor: pointer;
-    position: absolute;
-    z-index: 1000;
-    right: 2rem;
-    top: 2rem;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    top: -0.5rem;
+    right: -0.5rem;
   }
+`;
+
+export const MobileIcon = styled.div`
+  cursor: pointer;
+  position: absolute;
+  z-index: 1000;
+  right: 2rem;
+  top: 2rem;
 `;

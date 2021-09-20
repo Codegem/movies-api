@@ -1,11 +1,11 @@
 import Menu from "../../Menu";
 import { Mobile, MobileMenuWrapper } from "./MobileNavElements";
 
-const MobileNav = ({ classOpen }) => {
+const MobileNav = ({ classOpen, handleSelect }) => {
   return (
     <MobileMenuWrapper className={classOpen}>
       <Mobile>
-        <Menu />
+        <Menu handleSelect={handleSelect} />
       </Mobile>
     </MobileMenuWrapper>
   );

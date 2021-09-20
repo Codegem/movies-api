@@ -2,7 +2,7 @@ import { useState } from "react";
 import Menu from "../Menu";
 import Search from "../Search";
 import Logo from "../Logo";
-import { Navbar, MobileIcon } from "./NavbarElements";
+import { Navbar, MobileIcon, MobileWrapper } from "./NavbarElements";
 import SearchTab from "../Search/searchtab";
 import MobileNav from "./MobileNav";
 import MenuIcon from "./CustomIcons";
@@ -22,7 +22,7 @@ const Header = () => {
       setclassName("close");
       setTimeout(function () {
         setclassName("");
-      }, 1000);
+      }, 700);
     } else if (!menuOpen) {
       setclassName("open");
     }
@@ -36,10 +36,17 @@ const Header = () => {
         <Search searchToggle={searchToggle} />
         {searchActive && <SearchTab open={searchActive} />}
       </Navbar>
-      <MobileIcon onClick={menuHandler}>
-        <MenuIcon openClass={className} />
-      </MobileIcon>
-      {className && <MobileNav classOpen={className} />}
+
+      <MobileWrapper>
+        <MobileIcon onClick={menuHandler}>
+          <MenuIcon openClass={className} />
+        </MobileIcon>
+        <Search searchToggle={searchToggle} className="searchMobile" />
+        {searchActive && <SearchTab open={searchActive} />}
+        {className && (
+          <MobileNav classOpen={className} handleSelect={menuHandler} />
+        )}
+      </MobileWrapper>
     </>
   );
 };

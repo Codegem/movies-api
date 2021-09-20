@@ -43,8 +43,8 @@ const VideoModal = ({ toggle, open, data }) => {
     if (data !== undefined) {
       dispatch(
         data.media_type === "movie"
-          ? movieTrailer(data.id)
-          : tvshowTrailer(data.id)
+          ? movieTrailer(data.id, "/videos")
+          : tvshowTrailer(data.id, "/videos")
       );
       return;
     }

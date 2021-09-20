@@ -22,9 +22,13 @@ const Home = () => {
   }, []);
 
   return (
-    <div style={{ marginTop: "10vh" }}>
-      <PopularSection data={popularMoviesList} title="Popular Movies" />
-      <PopularSection data={popularShowsList} title="Popular TV Shows" />
+    <div style={{ marginTop: "3rem" }}>
+      <PopularSection
+        data={popularMoviesList}
+        title="Popular Movies"
+        type="Movie"
+      />
+      <PopularSection data={popularShowsList} title="Popular TV Shows " />
     </div>
   );
 };

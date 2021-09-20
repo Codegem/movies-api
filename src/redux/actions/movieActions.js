@@ -53,11 +53,14 @@ export const popularTVShows = async (dispatch) => {
   });
 };
 
-export const movieTrailer = (id) => async (dispatch) => {
+export const movieTrailer = (id, video) => async (dispatch) => {
+  if (video === undefined) {
+    video = "";
+  }
   const { data } = await axiosFetch(
     type.GET_MOVIE_VIDEO,
     undefined,
-    `/${id}/videos`
+    `/${id}${video}`
   );
   if (!data || data.length === 0) {
     return;
@@ -68,17 +71,46 @@ export const movieTrailer = (id) => async (dispatch) => {
   });
 };
 
-export const tvshowTrailer = (id) => async (dispatch) => {
+export const tvshowTrailer = (id, video) => async (dispatch) => {
+  if (video === undefined) {
+    video = "";
+  }
   const { data } = await axiosFetch(
     type.GET_TVSHOW_VIDEO,
     undefined,
-    `/${id}/videos`
+    `/${id}${video}`
   );
   if (!data || data.length === 0) {
     return;
   }
   dispatch({
     type: type.GET_TVSHOW_VIDEO.typeStr,
+    payload: data,
+  });
+};
+
+export const getMediaInfo = (mediaType, id) => async (dispatch) => {
+  const { data } = await axiosFetch(
+    type.GET_INFO,
+    undefined,
+    `/${mediaType}/${id}`
+  );
+  if (!data || data.length === 0) {
+    return;
+  }
+  dispatch({
+    type: type.GET_INFO.typeStr,
+    payload: data,
+  });
+};
+
+export const upcomingMovies = async (dispatch) => {
+  const { data } = await axiosFetch(type.GET_UPCOMING_MOVIE);
+  if (!data || data.length === 0) {
+    return;
+  }
+  dispatch({
+    type: type.GET_UPCOMING_MOVIE.typeStr,
     payload: data,
   });
 };

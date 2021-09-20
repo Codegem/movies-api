@@ -17,6 +17,9 @@ const GlobalStyle = createGlobalStyle`
         text-decoration: none;
         color: black;
     }
+    ::-webkit-scrollbar {
+        display: none;
+    }
 `;
 
 export default GlobalStyle;
