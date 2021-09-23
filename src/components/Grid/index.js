@@ -2,10 +2,9 @@ import React from "react";
 import GridCardElements from "./GridCard";
 import { GridWrapper, GridContainer } from "./GridElements";
 
-const Grid = ({ data, type }) => {
-  console.log(type);
+const Grid = ({ data }) => {
   return (
-    <GridContainer type={type}>
+    <GridContainer>
       <GridWrapper>
         {data !== undefined &&
           data.map((item, key) => {

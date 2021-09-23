@@ -23,10 +23,9 @@ const Home = () => {
 
   return (
     <div style={{ marginTop: "3rem" }}>
-      <PopularSection
-        data={popularMoviesList}
-        title="Popular Movies"
-        type="Movie"
+      <PopularSection data={popularMoviesList} title="Popular Movies" />
+      <div
+        style={{ marginBottom: window.innerWidth <= 480 ? "40rem" : "50rem" }}
       />
       <PopularSection data={popularShowsList} title="Popular TV Shows " />
     </div>

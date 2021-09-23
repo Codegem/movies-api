@@ -1,51 +1,57 @@
-const BASE_URL = `https://api.themoviedb.org/3`;
-
 export const SEARCH_MOVIE = {
   typeStr: "SEARCH_MOVIE",
-  axiosUrl: `${BASE_URL}/search/movie`,
+  axiosUrl: `/search/movie`,
 };
 
 export const GET_GENRES = {
   typeStr: "GET_GENRES",
-  axiosUrl: `${BASE_URL}/genre/movie/list`,
+  axiosUrl: `/genre/movie/list`,
 };
 
 export const GET_TRENDING_MOVIE = {
   typeStr: "GET_TRENDING_MOVIE",
-  axiosUrl: `${BASE_URL}/trending/movie/week`,
+  axiosUrl: `/trending/movie/week`,
 };
 
 export const GET_UPCOMING_MOVIE = {
   typeStr: "GET_UPCOMING_MOVIE",
-  axiosUrl: `${BASE_URL}/movie/upcoming`,
+  axiosUrl: `/movie/upcoming`,
 };
 
 export const GET_TRENDING_TVSHOWS = {
   typeStr: "GET_TRENDING_TVSHOWS",
-  axiosUrl: `${BASE_URL}/trending/tv/week`,
+  axiosUrl: `/trending/tv/week`,
 };
 
 export const GET_TVSHOWS_POPULAR = {
   typeStr: "GET_TVSHOWS_POPULAR",
-  axiosUrl: `${BASE_URL}/tv/popular`,
+  axiosUrl: `/tv/popular`,
 };
 
 export const GET_MOVIES_POPULAR = {
   typeStr: "GET_MOVIES_POPULAR",
-  axiosUrl: `${BASE_URL}/movie/popular`,
+  axiosUrl: `/movie/popular`,
 };
 
 export const GET_MOVIE_VIDEO = {
   typeStr: "GET_MOVIE_VIDEO",
-  axiosUrl: `${BASE_URL}/movie`,
+  axiosUrl: `/movie`,
 };
 
 export const GET_TVSHOW_VIDEO = {
   typeStr: "GET_TVSHOW_VIDEO",
-  axiosUrl: `${BASE_URL}/tv`,
+  axiosUrl: `/tv`,
 };
 
 export const GET_INFO = {
   typeStr: "GET_INFO",
-  axiosUrl: `${BASE_URL}`,
+  axiosUrl: ``,
+};
+
+export const ERROR = {
+  typeStr: "ERROR",
+};
+
+export const LOADING = {
+  typeStr: "LOADING",
 };

@@ -114,3 +114,18 @@ export const upcomingMovies = async (dispatch) => {
     payload: data,
   });
 };
+
+export const Error = async (dispatch) => {
+  const error = "Something Went Wrong";
+  dispatch({
+    type: type.ERROR.typeStr,
+    payload: error,
+  });
+};
+
+export const Loading = async (dispatch) => {
+  dispatch({
+    type: type.LOADING.typeStr,
+    payload: true,
+  });
+};

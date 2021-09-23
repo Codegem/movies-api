@@ -14,7 +14,11 @@ const Upcoming = () => {
     dispatch(upcomingMovies);
   }, []);
 
-  return <Grid data={upcomingList} />;
+  return (
+    <div style={{ marginTop: "5rem" }}>
+      <Grid data={upcomingList} />;
+    </div>
+  );
 };
 
 export default Upcoming;

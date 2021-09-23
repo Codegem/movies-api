@@ -2,7 +2,11 @@ import React, { useEffect } from "react";
 import Modal from "react-modal";
 import YouTube from "react-youtube";
 import { useDispatch, useSelector } from "react-redux";
-import { movieTrailer, getMediaInfo } from "../../redux/actions/movieActions";
+import {
+  movieTrailer,
+  getMediaInfo,
+  tvshowTrailer,
+} from "../../redux/actions/movieActions";
 import {
   ButtonWrapper,
   Description,
@@ -21,9 +25,9 @@ import Loading from "../Loading";
 const customStyles = {
   content: {
     position: "relative",
-    width: "55%",
+    width: window.innerWidth <= 480 ? "80%" : "55%",
     height: "100vh",
-    top: "25rem",
+    top: window.innerWidth <= 480 ? "24rem" : "25rem",
     left: "50%",
     right: "auto",
     bottom: "auto",
@@ -44,35 +48,54 @@ const customStyles = {
   },
 };
 
-const About = ({ movieId, open, toggle }) => {
+const About = ({ data, id, open, toggle }) => {
   const dispatch = useDispatch();
   const { getRating } = Star();
   const [loading, setLoading] = useState(false);
 
+  const type = data !== undefined && data.name === undefined ? "movie" : "tv";
+
   useEffect(() => {
-    dispatch(getMediaInfo("movie", movieId));
-    dispatch(movieTrailer(movieId, "/videos"));
-    setLoading(true);
+    if (type === "tv") {
+      dispatch(getMediaInfo("tv", id));
+      dispatch(tvshowTrailer(id, "/videos"));
+      setLoading(true);
+    } else {
+      dispatch(getMediaInfo("movie", id));
+      dispatch(movieTrailer(id, "/videos"));
+      setLoading(true);
+    }
   }, []);
 
   const aboutMovie = useSelector((state) => state.movies.mediaInfo);
   const officialTrailer = useSelector(
-    (state) => state.movies.movieTrailer.results
+    type === "tv"
+      ? (state) => state.movies.tvshowTrailer.results
+      : (state) => state.movies.movieTrailer.results
   );
 
   if (aboutMovie !== undefined && officialTrailer !== undefined) {
     setTimeout(function () {
       setLoading(false);
-    }, 2000);
+    }, 1200);
   }
 
-  const opts = {
-    height: "420",
-    width: "660",
-    playerVars: {
-      autoplay: 1,
-    },
-  };
+  const opts =
+    window.innerWidth <= 480
+      ? {
+          height: "380",
+          width: "480",
+          playerVars: {
+            autoplay: 1,
+          },
+        }
+      : {
+          height: "420",
+          width: "660",
+          playerVars: {
+            autoplay: 1,
+          },
+        };
   return (
     <Modal
       isOpen={open}
@@ -102,7 +125,7 @@ const About = ({ movieId, open, toggle }) => {
           <Genres>
             {aboutMovie.genres !== undefined &&
               aboutMovie.genres.map((genre) => {
-                return <GenreItem>{genre.name}</GenreItem>;
+                return <GenreItem key={genre.id}>{genre.name}</GenreItem>;
               })}
           </Genres>
           <ButtonWrapper>

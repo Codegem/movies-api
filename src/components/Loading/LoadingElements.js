@@ -43,6 +43,9 @@ export const LoadingWrapper = styled.div`
   position: relative;
   width: 25rem;
   height: 25rem;
+  @media screen and (max-width: 480px) {
+    margin-left: 6rem;
+  }
 `;
 
 export const LoadingCutter = styled.div`
@@ -67,6 +70,7 @@ export const LoadingBody = styled.div`
   height: 15rem;
   border: 5px solid white;
 `;
+
 export const LoadingTop = styled.div`
   width: 19.8rem;
   height: 5rem;
@@ -77,6 +81,7 @@ export const LoadingTop = styled.div`
   display: flex;
   justify-content: space-evenly;
 `;
+
 export const LoadingMid = styled.div`
   position: absolute;
   width: 12rem;

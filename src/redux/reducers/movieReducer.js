@@ -1,6 +1,8 @@
 import * as type from "../action-types/movieActionTypes";
 
 const initialState = {
+  loading: false,
+  error: null,
   trendingMovieList: {},
   searchMovieResults: {},
   trendingTvShowsList: {},
@@ -66,6 +68,18 @@ export const trendingMovieReducer = (state = initialState, action) => {
       return {
         ...state,
         mediaInfo: action.payload,
+      };
+    }
+    case type.ERROR: {
+      return {
+        ...state,
+        error: action.payload,
+      };
+    }
+    case type.LOADING: {
+      return {
+        ...state,
+        loading: action.payload,
       };
     }
     default:

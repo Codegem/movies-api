@@ -6,13 +6,22 @@ export const VideoWrapper = styled.div`
 `;
 export const Description = styled.div`
   max-width: 100%;
+  @media screen and (max-width: 480px) {
+    width: 100vw;
+  }
 `;
+
 export const DescriptionText = styled.p`
   font-size: 1.25rem;
   line-height: 1.8rem;
   color: rgb(233, 237, 240);
   text-indent: 25px;
+  @media screen and (max-width: 480px) {
+    font-size: 0.9rem;
+    line-height: 1.8rem;
+  }
 `;
+
 export const Rating = styled.div`
   margin: 0.5rem;
   display: flex;
@@ -42,7 +51,11 @@ export const ButtonWrapper = styled.div`
   max-width: 80%;
   display: flex;
   justify-content: space-between;
+  @media screen and (max-width: 480px) {
+    max-width: 100%;
+  }
 `;
+
 export const OfficialSite = styled.a`
   margin: 1rem;
   width: 8rem;
@@ -57,6 +70,7 @@ export const OfficialSite = styled.a`
   border-radius: 5px;
   cursor: pointer;
 `;
+
 export const Favorite = styled.button`
   margin: 1rem;
   width: 8rem;
