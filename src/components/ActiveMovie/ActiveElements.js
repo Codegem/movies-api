@@ -46,9 +46,10 @@ export const AboutMovie = styled.div`
 export const MovieTitle = styled.h1`
   font-size: 3.5rem;
   color: rgb(233, 237, 240);
+  width: 100%;
   @media screen and (max-width: 480px) {
     font-size: 2.5rem;
-    max-width: 80%;
+    max-width: 100%;
   }
 `;
 

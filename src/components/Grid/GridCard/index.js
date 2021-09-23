@@ -29,13 +29,13 @@ const GridCardElements = ({ data }) => {
       >
         <Overlay />
         <Info>
-          <Title>{data.original_title}</Title>
+          <Title>{data.original_title || data.name}</Title>
           <Rating>{getRating(data.vote_average, "15", "8")}</Rating>
           <MoreInfo onClick={aboutToggle}>More Info</MoreInfo>
         </Info>
       </Card>
       {openAbout && (
-        <About movieId={data.id} toggle={aboutToggle} open={openAbout} />
+        <About id={data.id} toggle={aboutToggle} open={openAbout} data={data} />
       )}
     </>
   );

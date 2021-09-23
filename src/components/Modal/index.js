@@ -6,7 +6,7 @@ import { movieTrailer, tvshowTrailer } from "../../redux/actions/movieActions";
 
 const customStyles = {
   content: {
-    top: "20rem",
+    top: window.innerWidth <= 480 ? window.innerHeight - 400 : "25rem",
     left: "50%",
     right: "auto",
     bottom: "auto",
@@ -32,8 +32,8 @@ const VideoModal = ({ toggle, open, data }) => {
   );
 
   const opts = {
-    height: "480",
-    width: "360",
+    height: window.innerWidth <= 480 ? window.innerHeight - 100 : "600",
+    width: window.innerWidth <= 480 ? window.innerWidth - 50 : "800",
     playerVars: {
       autoplay: 1,
     },
