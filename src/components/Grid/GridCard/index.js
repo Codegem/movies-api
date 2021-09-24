@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import {
   Card,
   Info,
@@ -10,14 +10,17 @@ import {
 import { ImageJoin } from "../../../helpers/image/Image";
 import Star from "../../../helpers/stars/Stars";
 import About from "../../AboutInfo";
+import { ModalToggle } from "../../../redux/actions/globalActions";
+import { useDispatch, useSelector } from "react-redux";
 
 const GridCardElements = ({ data }) => {
+  const dispatch = useDispatch();
   const { getRating } = Star();
 
-  const [openAbout, setOpenAbout] = useState(false);
+  const modalState = useSelector((state) => state.global.modalOpen);
 
   const aboutToggle = () => {
-    setOpenAbout(!openAbout);
+    dispatch(ModalToggle);
   };
 
   return (
@@ -34,8 +37,13 @@ const GridCardElements = ({ data }) => {
           <MoreInfo onClick={aboutToggle}>More Info</MoreInfo>
         </Info>
       </Card>
-      {openAbout && (
-        <About id={data.id} toggle={aboutToggle} open={openAbout} data={data} />
+      {modalState && (
+        <About
+          id={data.id}
+          toggle={aboutToggle}
+          open={modalState}
+          data={data}
+        />
       )}
     </>
   );

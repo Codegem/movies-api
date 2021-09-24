@@ -48,19 +48,18 @@ const TrendingMovies = ({ data }) => {
             },
           }}
         >
-          {data !== null &&
-            data.map((movie, key) => {
-              return (
-                <SwiperSlide
-                  key={key}
-                  onClick={(e) => {
-                    selectHandler(movie);
-                  }}
-                >
-                  <ThumbImg src={ImageJoin(movie.poster_path)} />
-                </SwiperSlide>
-              );
-            })}
+          {data?.map((movie, key) => {
+            return (
+              <SwiperSlide
+                key={key}
+                onClick={(e) => {
+                  selectHandler(movie);
+                }}
+              >
+                <ThumbImg src={ImageJoin(movie.poster_path)} />
+              </SwiperSlide>
+            );
+          })}
         </Movies>
       </AllMovies>
     </ActiveMovie>

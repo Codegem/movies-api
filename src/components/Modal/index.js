@@ -27,8 +27,8 @@ const VideoModal = ({ toggle, open, data }) => {
 
   const trailer = useSelector((state) =>
     data.media_type === "movie"
-      ? state.movies.movieTrailer.results
-      : state.movies.tvshowTrailer.results
+      ? state.movies.movieTrailer.data?.results
+      : state.movies.tvshowTrailer.data?.results
   );
 
   const opts = {

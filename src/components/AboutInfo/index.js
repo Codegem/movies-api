@@ -68,6 +68,7 @@ const About = ({ data, id, open, toggle }) => {
   }, []);
 
   const aboutMovie = useSelector((state) => state.movies.mediaInfo);
+  console.log(aboutMovie);
   const officialTrailer = useSelector(
     type === "tv"
       ? (state) => state.movies.tvshowTrailer.results

@@ -8,7 +8,7 @@ const Shows = () => {
   const dispatch = useDispatch();
 
   const shows = useSelector(
-    (state) => state.movies.trendingTvShowsList.results
+    (state) => state.movies.trendingTvShowsList.data?.results
   );
 
   useEffect(() => {

@@ -47,11 +47,3 @@ export const GET_INFO = {
   typeStr: "GET_INFO",
   axiosUrl: ``,
 };
-
-export const ERROR = {
-  typeStr: "ERROR",
-};
-
-export const LOADING = {
-  typeStr: "LOADING",
-};
