@@ -1,30 +1,19 @@
-import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React from "react";
+import { useSelector } from "react-redux";
 import Grid from "../../components/Grid";
-import LoaderSpinner from "../../components/Loading/LoaderSpinner";
 import { upcomingMovies } from "../../redux/actions/movieActions";
+import useDispatcher from "../../helpers/dispatch";
 
 const Upcoming = () => {
-  const dispatch = useDispatch();
-  const loading = useSelector((state) => state.movies.loading);
+  useDispatcher(upcomingMovies, undefined, true);
 
-  const upcomingList = useSelector(
-    (state) => state.movies.upcomingMovie.data?.results
-  );
-
-  useEffect(() => {
-    dispatch(upcomingMovies);
-  }, []);
+  const upcomingList = useSelector((state) => state.movies.upcomingMovie);
 
   return (
     <>
-      {loading ? (
-        <LoaderSpinner />
-      ) : (
-        <div style={{ marginTop: "5rem" }}>
-          <Grid data={upcomingList} />;
-        </div>
-      )}
+      <div style={{ marginTop: "5rem" }}>
+        <Grid data={upcomingList} />;
+      </div>
     </>
   );
 };

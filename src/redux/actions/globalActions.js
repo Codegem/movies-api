@@ -23,3 +23,11 @@ export const Loading = (dispatch) => {
     type: type.LOADING,
   });
 };
+
+export const ActiveData = (data) => async (dispatch) => {
+  const setData = await data;
+  dispatch({
+    type: type.ACTIVE_DATA,
+    payload: setData,
+  });
+};

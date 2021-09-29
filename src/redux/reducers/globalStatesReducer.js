@@ -5,6 +5,7 @@ const initialState = {
   searchOpen: false,
   modalOpen: false,
   loading: false,
+  activeData: {},
 };
 
 export const GlobalStateReducer = (state = initialState, action) => {
@@ -31,6 +32,12 @@ export const GlobalStateReducer = (state = initialState, action) => {
       return {
         ...state,
         loading: !state.loading,
+      };
+    }
+    case type.ACTIVE_DATA: {
+      return {
+        ...state,
+        activeData: action.payload,
       };
     }
     default:

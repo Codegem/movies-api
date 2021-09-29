@@ -9,12 +9,6 @@ const reducer = combineReducers({
   global: GlobalStateReducer,
 });
 
-const initialState = {};
-
-const store = createStore(
-  reducer,
-  initialState,
-  composeWithDevTools(applyMiddleware(thunk))
-);
+const store = createStore(reducer, composeWithDevTools(applyMiddleware(thunk)));
 
 export default store;

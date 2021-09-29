@@ -7,44 +7,39 @@ import {
   Rating,
   MoreInfo,
 } from "./GridCardElements";
-import { ImageJoin } from "../../../helpers/image/Image";
-import Star from "../../../helpers/stars/Stars";
-import About from "../../AboutInfo";
-import { ModalToggle } from "../../../redux/actions/globalActions";
+import { Loading, ModalToggle } from "../../../redux/actions/globalActions";
 import { useDispatch, useSelector } from "react-redux";
+import { getMediaInfo } from "../../../redux/actions/movieActions";
+import About from "../../AboutInfo";
 
-const GridCardElements = ({ data }) => {
+const GridCardElements = ({ data, id }) => {
   const dispatch = useDispatch();
-  const { getRating } = Star();
-
   const modalState = useSelector((state) => state.global.modalOpen);
 
-  const aboutToggle = () => {
+  const aboutDataModal = (e, mediaType, id) => {
+    console.log(e.target.id);
     dispatch(ModalToggle);
+    // dispatch(getMediaInfo(mediaType, id));
   };
 
   return (
     <>
-      <Card
-        url={ImageJoin(
-          data.poster_path !== null ? data.poster_path : data.backdrop_path
-        )}
-      >
+      <Card url={data.poster} key={id}>
         <Overlay />
         <Info>
-          <Title>{data.original_title || data.name}</Title>
-          <Rating>{getRating(data.vote_average, "15", "8")}</Rating>
-          <MoreInfo onClick={aboutToggle}>More Info</MoreInfo>
+          <Title>{data.name}</Title>
+          <Rating>{data.rating}</Rating>
+          <MoreInfo
+          // onClick={(e) => aboutDataModal(e, data.mediaType, data.id)}
+          // id={data.id}
+          >
+            More Info
+          </MoreInfo>
         </Info>
+        {modalState && (
+          <About open={modalState} toggle={() => dispatch(ModalToggle)} />
+        )}
       </Card>
-      {modalState && (
-        <About
-          id={data.id}
-          toggle={aboutToggle}
-          open={modalState}
-          data={data}
-        />
-      )}
     </>
   );
 };

@@ -1,27 +1,20 @@
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import LoaderSpinner from "../../components/Loading/LoaderSpinner";
 import PopularSection from "../../components/PopularList";
+import useDispatcher from "../../helpers/dispatch";
 import {
   popularTVShows,
   popularMovies,
 } from "../../redux/actions/movieActions";
 
 const Home = () => {
-  const dispatch = useDispatch();
-  const loading = useSelector((state) => state.movies.loading);
-  // selector
-  const popularMoviesList = useSelector(
-    (state) => state.movies.popularMovies.data?.results
-  );
-  const popularShowsList = useSelector(
-    (state) => state.movies.popularTvShows.data?.results
-  );
-  //selector end
-  useEffect(() => {
-    dispatch(popularTVShows);
-    dispatch(popularMovies);
-  }, []);
+  const loading = useSelector((state) => state.global.loading);
+
+  useDispatcher(popularMovies, undefined, true);
+  useDispatcher(popularTVShows, undefined, false);
+
+  const popularMoviesList = useSelector((state) => state.movies.popularMovies);
+  const popularTVList = useSelector((state) => state.movies.popularTvShows);
 
   return (
     <>
@@ -31,11 +24,12 @@ const Home = () => {
         <div style={{ marginTop: "3rem" }}>
           <PopularSection data={popularMoviesList} title="Popular Movies" />
           <div
+            id="movies"
             style={{
               marginBottom: window.innerWidth <= 480 ? "40rem" : "50rem",
             }}
           />
-          <PopularSection data={popularShowsList} title="Popular TV Shows " />
+          <PopularSection data={popularTVList} title="Popular TV Shows " />
         </div>
       )}
     </>

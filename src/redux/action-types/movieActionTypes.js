@@ -33,14 +33,9 @@ export const GET_MOVIES_POPULAR = {
   axiosUrl: `/movie/popular`,
 };
 
-export const GET_MOVIE_VIDEO = {
-  typeStr: "GET_MOVIE_VIDEO",
-  axiosUrl: `/movie`,
-};
-
-export const GET_TVSHOW_VIDEO = {
-  typeStr: "GET_TVSHOW_VIDEO",
-  axiosUrl: `/tv`,
+export const GET_VIDEO_TRAILER = {
+  typeStr: "GET_VIDEO_TRAILER",
+  axiosUrl: ``,
 };
 
 export const GET_INFO = {

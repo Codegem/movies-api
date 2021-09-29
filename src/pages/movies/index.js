@@ -1,30 +1,28 @@
-import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { trendingMovies } from "../../redux/actions/movieActions";
-import TrendingMovies from "../../components/AllTrendingMovies";
+import Trending from "../../components/Trending";
+import ActiveMovie from "../../components/ActiveMovie";
 import LoaderSpinner from "../../components/Loading/LoaderSpinner";
+import useDispatcher from "../../helpers/dispatch";
+import { ActiveData } from "../../redux/actions/globalActions";
 
 const Movies = () => {
   const dispatch = useDispatch();
+  useDispatcher(trendingMovies, undefined, true);
 
-  useEffect(() => {
-    dispatch(trendingMovies);
-  }, []);
+  const movies = useSelector((state) => state.movies.trendingMovieList);
+  const loading = useSelector((state) => state.global.loading);
 
-  const movies = useSelector(
-    (state) => state.movies.trendingMovieList.data?.results
-  );
-
-  const loading = useSelector((state) => state.movies.loading);
+  dispatch(ActiveData(movies[0]));
 
   return (
     <>
       {loading ? (
         <LoaderSpinner />
       ) : (
-        <>
-          <TrendingMovies data={movies} />
-        </>
+        <ActiveMovie>
+          <Trending data={movies} />
+        </ActiveMovie>
       )}
     </>
   );

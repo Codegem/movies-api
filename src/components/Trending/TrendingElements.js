@@ -9,6 +9,7 @@ export const AllMovies = styled.div`
 
 export const Title = styled.p`
   position: absolute;
+  z-index: 15;
   bottom: 20.5rem;
   left: 3rem;
   font-size: 1.5rem;
@@ -41,6 +42,7 @@ export const Movies = styled(Swiper)`
   position: absolute;
   border-top: 2px solid rgba(147, 148, 150, 0.6);
   width: calc(100% - 5rem);
+  z-index: 15;
   bottom: 5vh;
   .swiper-slide {
     height: 17rem;

@@ -33,7 +33,7 @@ const customStyles = {
     bottom: "auto",
     marginRight: "-50%",
     transform: "translate(-50%, -50%)",
-    background: "rgba(0, 0, 0, 0)",
+    background: "rgba(0, 0, 0, 0.4)",
     backdropFilter: "blur(0)",
     border: "none",
     display: "flex",
@@ -48,38 +48,8 @@ const customStyles = {
   },
 };
 
-const About = ({ data, id, open, toggle }) => {
+const About = ({ open, toggle }) => {
   const dispatch = useDispatch();
-  const { getRating } = Star();
-  const [loading, setLoading] = useState(false);
-
-  const type = data !== undefined && data.name === undefined ? "movie" : "tv";
-
-  useEffect(() => {
-    if (type === "tv") {
-      dispatch(getMediaInfo("tv", id));
-      dispatch(tvshowTrailer(id, "/videos"));
-      setLoading(true);
-    } else {
-      dispatch(getMediaInfo("movie", id));
-      dispatch(movieTrailer(id, "/videos"));
-      setLoading(true);
-    }
-  }, []);
-
-  const aboutMovie = useSelector((state) => state.movies.mediaInfo);
-  console.log(aboutMovie);
-  const officialTrailer = useSelector(
-    type === "tv"
-      ? (state) => state.movies.tvshowTrailer.results
-      : (state) => state.movies.movieTrailer.results
-  );
-
-  if (aboutMovie !== undefined && officialTrailer !== undefined) {
-    setTimeout(function () {
-      setLoading(false);
-    }, 1200);
-  }
 
   const opts =
     window.innerWidth <= 480
@@ -104,7 +74,7 @@ const About = ({ data, id, open, toggle }) => {
       style={customStyles}
       ariaHideApp={false}
     >
-      {loading ? (
+      {/* {loading ? (
         <Loading />
       ) : (
         <>
@@ -136,7 +106,7 @@ const About = ({ data, id, open, toggle }) => {
             <Favorite>Favorite</Favorite>
           </ButtonWrapper>
         </>
-      )}
+      )} */}
     </Modal>
   );
 };
