@@ -1,9 +1,10 @@
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { Loading } from "../redux/actions/globalActions";
-const useDispatcher = (dispatchName, additionalArguments, loading) => {
+import { Loading, ModalLoader } from "../redux/actions/globalActions";
+const useDispatcher = (dispatchName, additionalArguments, loading, modal) => {
   //	dispatchName => what you want to dispatch
   // loading => if wanted to see loading spinner
+  const Loader = modal ? ModalLoader : Loading;
   const dispatchData = additionalArguments
     ? dispatchName(additionalArguments)
     : dispatchName;
@@ -12,11 +13,14 @@ const useDispatcher = (dispatchName, additionalArguments, loading) => {
 
   useEffect(() => {
     if (loading) {
-      dispatch(Loading);
+      dispatch(Loader);
       dispatch(dispatchData);
-      setTimeout(function () {
-        dispatch(Loading);
-      }, 1500);
+      setTimeout(
+        function () {
+          dispatch(Loader);
+        },
+        Loader === ModalLoader ? 1400 : 500
+      );
     } else {
       dispatch(dispatchData);
     }

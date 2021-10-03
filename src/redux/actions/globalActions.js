@@ -18,6 +18,12 @@ export const ModalToggle = (dispatch) => {
   });
 };
 
+export const ModalLoader = (dispatch) => {
+  dispatch({
+    type: type.MODAL_LOADER,
+  });
+};
+
 export const Loading = (dispatch) => {
   dispatch({
     type: type.LOADING,

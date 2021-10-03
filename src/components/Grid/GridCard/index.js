@@ -1,4 +1,4 @@
-import React from "react";
+import { useState } from "react";
 import {
   Card,
   Info,
@@ -7,37 +7,31 @@ import {
   Rating,
   MoreInfo,
 } from "./GridCardElements";
-import { Loading, ModalToggle } from "../../../redux/actions/globalActions";
-import { useDispatch, useSelector } from "react-redux";
-import { getMediaInfo } from "../../../redux/actions/movieActions";
 import About from "../../AboutInfo";
 
-const GridCardElements = ({ data, id }) => {
-  const dispatch = useDispatch();
-  const modalState = useSelector((state) => state.global.modalOpen);
+const GridCardElements = ({ data }) => {
+  const [openAbout, setopenAbout] = useState(false);
 
-  const aboutDataModal = (e, mediaType, id) => {
-    console.log(e.target.id);
-    dispatch(ModalToggle);
-    // dispatch(getMediaInfo(mediaType, id));
+  const ModalToggle = () => {
+    setopenAbout(!openAbout);
   };
 
   return (
     <>
-      <Card url={data.poster} key={id}>
+      <Card url={data.poster}>
         <Overlay />
         <Info>
           <Title>{data.name}</Title>
           <Rating>{data.rating}</Rating>
-          <MoreInfo
-          // onClick={(e) => aboutDataModal(e, data.mediaType, data.id)}
-          // id={data.id}
-          >
-            More Info
-          </MoreInfo>
+          <MoreInfo onClick={ModalToggle}>More Info</MoreInfo>
         </Info>
-        {modalState && (
-          <About open={modalState} toggle={() => dispatch(ModalToggle)} />
+        {openAbout && (
+          <About
+            open={openAbout}
+            toggle={ModalToggle}
+            data={data.id}
+            mediaType={data.mediaType}
+          />
         )}
       </Card>
     </>

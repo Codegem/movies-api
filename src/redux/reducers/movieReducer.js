@@ -12,6 +12,7 @@ const initialState = {
   videoTrailer: null,
   upcomingMovie: {},
   mediaInfo: null,
+  genres: null,
 };
 
 export const trendingMovieReducer = (state = initialState, action) => {
@@ -25,7 +26,13 @@ export const trendingMovieReducer = (state = initialState, action) => {
     case type.SEARCH_MOVIE.typeStr: {
       return {
         ...state,
-        searchMovieResults: action.payload.results,
+        searchMovieResults: MovieData(action.payload.results),
+      };
+    }
+    case type.GET_GENRES.typeStr: {
+      return {
+        ...state,
+        genres: action.payload,
       };
     }
     case type.GET_TRENDING_TVSHOWS.typeStr: {

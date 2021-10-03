@@ -8,7 +8,7 @@ const TrendingMovieData = (data) => {
   ModifiedData = data.map((item) => ({
     backdrop: ImageJoin(item.backdrop_path, "original"),
     poster: ImageJoin(item.poster_path, "w500"),
-    genres: item.gendre_ids,
+    genres: item.genre_ids,
     id: item.id,
     rating: getRating(item.vote_average, "20px", "2px"),
     overview: item.overview,

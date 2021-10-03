@@ -12,7 +12,6 @@ const Home = () => {
 
   useDispatcher(popularMovies, undefined, true);
   useDispatcher(popularTVShows, undefined, false);
-
   const popularMoviesList = useSelector((state) => state.movies.popularMovies);
   const popularTVList = useSelector((state) => state.movies.popularTvShows);
 

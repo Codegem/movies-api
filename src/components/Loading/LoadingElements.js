@@ -43,6 +43,7 @@ export const LoadingWrapper = styled.div`
   position: relative;
   width: 25rem;
   height: 25rem;
+  margin: 5rem;
   @media screen and (max-width: 480px) {
     margin-left: 6rem;
   }
@@ -102,7 +103,7 @@ export const LoadingText = styled.p`
   color: black;
 `;
 
-export const Sripe = styled.div`
+export const Stripe = styled.div`
   height: 5rem;
   margin-top: -0.3rem;
   width: 3rem;
@@ -110,7 +111,7 @@ export const Sripe = styled.div`
   transform: skew(45deg);
 `;
 
-export const SripeBottom = styled.div`
+export const StripeBottom = styled.div`
   width: 2.5rem;
   margin-top: -0.3rem;
   width: 3rem;

@@ -5,6 +5,7 @@ const initialState = {
   searchOpen: false,
   modalOpen: false,
   loading: false,
+  modalLoader: false,
   activeData: {},
 };
 
@@ -38,6 +39,12 @@ export const GlobalStateReducer = (state = initialState, action) => {
       return {
         ...state,
         activeData: action.payload,
+      };
+    }
+    case type.MODAL_LOADER: {
+      return {
+        ...state,
+        modalLoader: !state.modalLoader,
       };
     }
     default:

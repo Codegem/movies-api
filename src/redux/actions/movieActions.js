@@ -1,5 +1,8 @@
 import * as type from "../action-types/movieActionTypes";
 import axiosFetch from "../../helpers/axiosFetch";
+import TrailerData from "../../helpers/dataHandlers/TrailerData";
+import ArrayJoin from "../../helpers/ArrayJoin";
+const { Join } = ArrayJoin();
 
 export const trendingMovies = async (dispatch) => {
   const data = await axiosFetch(type.GET_TRENDING_MOVIE);
@@ -41,27 +44,23 @@ export const popularTVShows = async (dispatch) => {
   });
 };
 
-export const getMediaInfo = (mediaType, id) => async (dispatch) => {
-  const infoData = await axiosFetch(
-    type.GET_INFO,
-    undefined,
-    `/${mediaType}/${id}`
-  );
-  const videoData = await axiosFetch(
+export const getMediaInfo = (id) => async (dispatch) => {
+  const infoData = await axiosFetch(type.GET_INFO, undefined, `/${id}`);
+  let videoData = await axiosFetch(
     type.GET_VIDEO_TRAILER,
     undefined,
-    `/${mediaType}/${id}/videos`
+    `/${id}/videos`
   );
-  const allData = {
-    ...infoData,
-    ...videoData.results[0],
-  };
+  let Trailers = TrailerData(videoData.results);
+  if (Trailers.length === 0) {
+    Trailers = videoData.results;
+  }
+  const allData = { ...infoData, ...Trailers[0] };
   dispatch({
     type: type.GET_INFO.typeStr,
     payload: allData,
   });
 };
-
 export const upcomingMovies = async (dispatch) => {
   const data = await axiosFetch(type.GET_UPCOMING_MOVIE);
   dispatch({
@@ -78,6 +77,22 @@ export const VideoTrailer = (id) => async (dispatch) => {
   );
   dispatch({
     type: type.GET_VIDEO_TRAILER.typeStr,
+    payload: data,
+  });
+};
+
+export const AllGenres = async (dispatch) => {
+  const genreMovie = await axiosFetch(
+    type.GET_GENRES,
+    undefined,
+    `/movie/list`
+  );
+  const genreTV = await axiosFetch(type.GET_GENRES, undefined, `/tv/list`);
+
+  const data = Join(genreMovie.genres, genreTV.genres);
+
+  dispatch({
+    type: type.GET_GENRES.typeStr,
     payload: data,
   });
 };

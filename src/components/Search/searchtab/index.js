@@ -16,6 +16,7 @@ const SearchTab = ({ open }) => {
     if (query.trim() !== "") {
       dispatch(searchMovies(query));
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [query]);
 
   return (

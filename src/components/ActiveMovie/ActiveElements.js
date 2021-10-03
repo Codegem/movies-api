@@ -27,28 +27,27 @@ export const Overlay = styled.div`
 
 export const DesktopOverlay = styled.div`
   position: absolute;
+  top: 3.8vw;
   opacity: 0;
-  transition: opacity 1s ease-in-out;
+  transition: opacity 0.5s ease-in-out;
   z-index: 10;
   &::before {
     content: "";
     position: absolute;
     left: 0;
-    top: 4rem;
-    height: 29.2vw;
     width: 44.45vw;
+    height: 30.25vw;
     background-color: rgba(0, 0, 0, 0.4);
   }
   &::after {
     content: "";
     position: absolute;
     left: 44.45vw;
-    top: 3.82rem;
     width: 0;
     height: 0;
-    border-top: 13.2rem solid transparent;
-    border-left: 20rem solid rgba(0, 0, 0, 0.4);
-    border-bottom: 13.2rem solid transparent;
+    border-top: 17.25vw solid transparent;
+    border-left: 20vw solid rgba(0, 0, 0, 0.4);
+    border-bottom: 13.2vw solid transparent;
   }
   @media screen and (max-width: 480px) {
     display: none;

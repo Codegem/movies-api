@@ -1,12 +1,8 @@
-import React, { useEffect } from "react";
+import React from "react";
 import Modal from "react-modal";
 import YouTube from "react-youtube";
-import { useDispatch, useSelector } from "react-redux";
-import {
-  movieTrailer,
-  getMediaInfo,
-  tvshowTrailer,
-} from "../../redux/actions/movieActions";
+import { useSelector } from "react-redux";
+import { getMediaInfo } from "../../redux/actions/movieActions";
 import {
   ButtonWrapper,
   Description,
@@ -18,9 +14,8 @@ import {
   VideoWrapper,
   GenreItem,
 } from "./InfoElements";
-import Star from "../../helpers/stars/Stars";
-import { useState } from "react";
-import Loading from "../Loading";
+import LoadingAnimation from "../Loading";
+import useDispatcher from "../../helpers/dispatch";
 
 const customStyles = {
   content: {
@@ -33,7 +28,7 @@ const customStyles = {
     bottom: "auto",
     marginRight: "-50%",
     transform: "translate(-50%, -50%)",
-    background: "rgba(0, 0, 0, 0.4)",
+    background: "none",
     backdropFilter: "blur(0)",
     border: "none",
     display: "flex",
@@ -48,8 +43,12 @@ const customStyles = {
   },
 };
 
-const About = ({ open, toggle }) => {
-  const dispatch = useDispatch();
+const About = ({ open, toggle, data, mediaType }) => {
+  console.log(data, mediaType);
+  useDispatcher(getMediaInfo, `${mediaType}/${data}`, true, true);
+
+  const info = useSelector((state) => state.movies.mediaInfo);
+  const loading = useSelector((state) => state.global.modalLoader);
 
   const opts =
     window.innerWidth <= 480
@@ -67,6 +66,7 @@ const About = ({ open, toggle }) => {
             autoplay: 1,
           },
         };
+
   return (
     <Modal
       isOpen={open}
@@ -74,39 +74,32 @@ const About = ({ open, toggle }) => {
       style={customStyles}
       ariaHideApp={false}
     >
-      {/* {loading ? (
-        <Loading />
+      {loading ? (
+        <LoadingAnimation />
       ) : (
         <>
           <VideoWrapper>
-            <YouTube
-              videoId={
-                officialTrailer !== undefined ? officialTrailer[0].key : ""
-              }
-              opts={opts}
-            />
+            <YouTube videoId={info?.key} opts={opts} />
           </VideoWrapper>
           <Description>
-            <DescriptionText>{aboutMovie.overview}</DescriptionText>
+            <DescriptionText>{info?.overview}</DescriptionText>
           </Description>
           <Rating>
-            <span>{aboutMovie.vote_average}</span>
-            {getRating(aboutMovie.vote_average, "25px", "5px")}
+            <span>{info?.vote_average}</span>
+            {info?.rating}
           </Rating>
           <Genres>
-            {aboutMovie.genres !== undefined &&
-              aboutMovie.genres.map((genre) => {
-                return <GenreItem key={genre.id}>{genre.name}</GenreItem>;
+            {info?.genres !== undefined &&
+              info?.genres.map((genre) => {
+                return <GenreItem key={genre?.id}>{genre?.name}</GenreItem>;
               })}
           </Genres>
           <ButtonWrapper>
-            <OfficialSite href={aboutMovie.homepage}>
-              Visit Official
-            </OfficialSite>
+            <OfficialSite href={info?.homepage}>Visit Official</OfficialSite>
             <Favorite>Favorite</Favorite>
           </ButtonWrapper>
         </>
-      )} */}
+      )}
     </Modal>
   );
 };

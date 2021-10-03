@@ -1,12 +1,9 @@
-import { useState } from "react";
 import { useSelector } from "react-redux";
 import { Movies, ThumbImg, AllMovies, Title } from "./TrendingElements";
 import "swiper/swiper-bundle.css";
 import { SwiperSlide } from "swiper/react";
 import LoaderSpinner from "../Loading/LoaderSpinner";
-import ActiveMovie from "../ActiveMovie";
 import SwiperCore, { Autoplay, Navigation } from "swiper";
-import useDispatcher from "../../helpers/dispatch";
 import { ActiveData } from "../../redux/actions/globalActions";
 import { useDispatch } from "react-redux";
 
@@ -15,10 +12,7 @@ const Trending = ({ data }) => {
   const dispatch = useDispatch();
   SwiperCore.use([Autoplay, Navigation]);
 
-  // const dispatcher = useDispatcher();
-
   const clickHander = (data) => {
-    // dispatcher(ActiveData, data, true);
     dispatch(ActiveData(data));
   };
 

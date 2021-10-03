@@ -3,6 +3,7 @@ import Modal from "react-modal";
 import { useSelector } from "react-redux";
 import useDispatcher from "../../helpers/dispatch";
 import { VideoTrailer } from "../../redux/actions/movieActions";
+import LoadingAnimation from "../Loading";
 
 const customStyles = {
   content: {
@@ -12,7 +13,7 @@ const customStyles = {
     bottom: "auto",
     marginRight: "-50%",
     transform: "translate(-50%, -50%)",
-    background: "black",
+    background: "none",
     border: "none",
   },
   overlay: {
@@ -31,8 +32,9 @@ const VideoModal = ({ toggle, open, data }) => {
     },
   };
 
-  useDispatcher(VideoTrailer, `${data.mediaType}/${data.id}`, false);
+  useDispatcher(VideoTrailer, `${data.mediaType}/${data.id}`, true, true);
   const trailer = useSelector((state) => state.movies.videoTrailer);
+  const loading = useSelector((state) => state.global.modalLoader);
 
   return (
     <Modal
@@ -41,7 +43,11 @@ const VideoModal = ({ toggle, open, data }) => {
       style={customStyles}
       ariaHideApp={false}
     >
-      {trailer !== null && <YouTube videoId={trailer[0].key} opts={opts} />}
+      {loading ? (
+        <LoadingAnimation />
+      ) : (
+        trailer !== null && <YouTube videoId={trailer[0].key} opts={opts} />
+      )}
     </Modal>
   );
 };

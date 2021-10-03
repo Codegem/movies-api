@@ -5,7 +5,7 @@ export const SEARCH_MOVIE = {
 
 export const GET_GENRES = {
   typeStr: "GET_GENRES",
-  axiosUrl: `/genre/movie/list`,
+  axiosUrl: `/genre`,
 };
 
 export const GET_TRENDING_MOVIE = {
