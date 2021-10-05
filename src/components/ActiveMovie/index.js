@@ -42,9 +42,7 @@ const ActiveMovie = ({ children, data }) => {
     <>
       <Overlay />
       <DesktopOverlay id="Overlay" />
-      <MovieImage src={activeData?.backdrop || data?.backdrop}>
-        {children}
-      </MovieImage>
+      <MovieImage src={activeData?.backdrop}>{children}</MovieImage>
       <AboutMovieWrapper
         onMouseEnter={() => mouseEnter()}
         onMouseLeave={() => mouseLeave()}

@@ -6,6 +6,8 @@ import {
   Overlay,
   Rating,
   MoreInfo,
+  SelectionWrapper,
+  WatchTrailer,
 } from "./GridCardElements";
 import About from "../../AboutInfo";
 
@@ -23,7 +25,12 @@ const GridCardElements = ({ data }) => {
         <Info>
           <Title>{data.name}</Title>
           <Rating>{data.rating}</Rating>
-          <MoreInfo onClick={ModalToggle}>More Info</MoreInfo>
+          <SelectionWrapper>
+            <WatchTrailer onClick={ModalToggle}>Trailer</WatchTrailer>
+            <MoreInfo to={`/movies-api/about/${data.mediaType}/${data.id}`}>
+              More Info
+            </MoreInfo>
+          </SelectionWrapper>
         </Info>
         {openAbout && (
           <About

@@ -28,7 +28,11 @@ function App() {
         <Route path="/movies-api/movies" exact component={Movies} />
         <Route path="/movies-api/shows" exact component={Shows} />
         <Route path="/movies-api/upcoming" exact component={Upcoming} />
-        <Route path="/movies-api/about/:movie/:id" component={AboutMovie} />
+        <Route
+          path="/movies-api/about/:movie/:id"
+          exact
+          component={AboutMovie}
+        />
         <Route path="*" component={PageError} />
       </Switch>
     </Router>

@@ -26,7 +26,7 @@ export const trendingMovieReducer = (state = initialState, action) => {
     case type.SEARCH_MOVIE.typeStr: {
       return {
         ...state,
-        searchMovieResults: MovieData(action.payload.results),
+        searchMovieResults: MovieData(action.payload),
       };
     }
     case type.GET_GENRES.typeStr: {

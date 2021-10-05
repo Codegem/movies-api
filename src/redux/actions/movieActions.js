@@ -13,7 +13,9 @@ export const trendingMovies = async (dispatch) => {
 };
 
 export const searchMovies = (query) => async (dispatch) => {
-  const data = await axiosFetch(type.SEARCH_MOVIE, { query: query });
+  const Movies = await axiosFetch(type.SEARCH_MOVIE, { query: query }, `movie`);
+  const TVShows = await axiosFetch(type.SEARCH_MOVIE, { query: query }, `tv`);
+  const data = Join(Movies.results, TVShows.results);
   dispatch({
     type: type.SEARCH_MOVIE.typeStr,
     payload: data,

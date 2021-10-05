@@ -13,12 +13,12 @@ const Header = () => {
   const dispatch = useDispatch();
   const [className, setclassName] = useState("");
 
+  const menuState = useSelector((state) => state.global.menuOpen);
+  const searchState = useSelector((state) => state.global.searchOpen);
+
   const searchToggle = () => {
     dispatch(SearchToggle);
   };
-
-  const menuState = useSelector((state) => state.global.menuOpen);
-  const searchState = useSelector((state) => state.global.searchOpen);
 
   const menuHandler = () => {
     dispatch(MenuToggle);

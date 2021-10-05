@@ -1,6 +1,6 @@
 export const SEARCH_MOVIE = {
   typeStr: "SEARCH_MOVIE",
-  axiosUrl: `/search/movie`,
+  axiosUrl: `/search/`,
 };
 
 export const GET_GENRES = {

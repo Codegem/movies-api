@@ -29,6 +29,7 @@ const VideoModal = ({ toggle, open, data }) => {
     width: window.innerWidth <= 480 ? window.innerWidth - 50 : "800",
     playerVars: {
       autoplay: 1,
+      controls: 0,
     },
   };
 
