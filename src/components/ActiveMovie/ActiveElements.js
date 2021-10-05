@@ -25,42 +25,13 @@ export const Overlay = styled.div`
   }
 `;
 
-export const DesktopOverlay = styled.div`
-  position: absolute;
-  top: 3.8vw;
-  opacity: 0;
-  transition: opacity 0.5s ease-in-out;
-  z-index: 10;
-  &::before {
-    content: "";
-    position: absolute;
-    left: 0;
-    width: 44.45vw;
-    height: 30.25vw;
-    background-color: rgba(0, 0, 0, 0.4);
-  }
-  &::after {
-    content: "";
-    position: absolute;
-    left: 44.45vw;
-    width: 0;
-    height: 0;
-    border-top: 17.25vw solid transparent;
-    border-left: 20vw solid rgba(0, 0, 0, 0.4);
-    border-bottom: 13.2vw solid transparent;
-  }
-  @media screen and (max-width: 480px) {
-    display: none;
-  }
-`;
-
 export const AboutMovieWrapper = styled.div`
   position: absolute;
   z-index: 15;
-  top: 5.5rem;
+  top: 6.5vw;
   left: 3rem;
-  max-width: 50rem;
-  max-height: 50rem;
+  max-width: 80vw;
+  max-height: 80vw;
   @media screen and (max-width: 480px) {
     z-index: 20;
     top: 5rem;
@@ -92,6 +63,13 @@ export const MovieImage = styled.div`
   background-size: cover;
   transition: all 1s ease;
   background-repeat: no-repeat;
+  &::after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.2);
+  }
   @media screen and (max-width: 480px) {
     background-size: 100% 62%;
   }
@@ -140,10 +118,11 @@ export const DescriptionText = styled.p`
   color: rgb(233, 237, 240);
   margin-top: 1.6vw;
   width: 60%;
-  font-size: 1.1rem;
-  line-height: 1.6rem;
+  text-indent: 2rem;
+  font-size: 1.4rem;
+  line-height: 2.1rem;
   @media screen and (max-width: 480px) {
-    text-indent: 15px;
+    text-indent: 1rem;
     width: 95%;
     margin-top: 2rem;
   }

@@ -14,7 +14,6 @@ import {
   ButtonWrapper,
   AboutMovieWrapper,
   Overlay,
-  DesktopOverlay,
 } from "./ActiveElements";
 import VideoModal from "../Modal";
 import { useDispatch, useSelector } from "react-redux";
@@ -31,22 +30,11 @@ const ActiveMovie = ({ children, data }) => {
     dispatch(ModalToggle);
   };
 
-  const mouseEnter = () => {
-    document.getElementById("Overlay").style.opacity = "1";
-  };
-  const mouseLeave = () => {
-    document.getElementById("Overlay").style.opacity = "0";
-  };
-
   return (
     <>
       <Overlay />
-      <DesktopOverlay id="Overlay" />
       <MovieImage src={activeData?.backdrop}>{children}</MovieImage>
-      <AboutMovieWrapper
-        onMouseEnter={() => mouseEnter()}
-        onMouseLeave={() => mouseLeave()}
-      >
+      <AboutMovieWrapper>
         <AboutMovie>
           <MovieTitle>{activeData?.name}</MovieTitle>
           <Vote>{activeData?.rating}</Vote>

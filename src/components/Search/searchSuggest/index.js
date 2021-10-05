@@ -1,3 +1,4 @@
+import React from "react";
 import {
   SearchSuggestions,
   MovieSuggestion,
@@ -26,7 +27,7 @@ const Suggestions = ({ query }) => {
       <SearchSuggestions className={query.trim() >= 1 && "open"}>
         {searchMovie?.slice(0, 5).map((movie, key) => {
           return (
-            <div key={key}>
+            <React.Fragment key={key}>
               {!movie.error ? (
                 <MovieSuggestion
                   to={`/movies-api/about/${movie.mediaType}/${movie.id}`}
@@ -39,7 +40,7 @@ const Suggestions = ({ query }) => {
               ) : (
                 <NoResults>{movie.error}</NoResults>
               )}
-            </div>
+            </React.Fragment>
           );
         })}
       </SearchSuggestions>

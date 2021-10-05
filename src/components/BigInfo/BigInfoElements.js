@@ -5,8 +5,6 @@ import {
   Genre,
   GenreItem,
   DescriptionText,
-  Vote,
-  MovieImage,
 } from "../ActiveMovie/ActiveElements";
 
 const Entrance = keyframes`

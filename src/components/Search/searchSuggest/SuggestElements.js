@@ -23,7 +23,7 @@ export const SearchSuggestions = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   padding: 0.5rem;
   &.open {
     animation: ${SuggestAnimation} 1s both;
@@ -31,13 +31,13 @@ export const SearchSuggestions = styled.div`
 `;
 
 export const MovieSuggestion = styled(Link)`
-  width: 90%;
+  width: 100%;
   height: 100%;
   margin-bottom: 1rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding-bottom: 5px;
+  padding: 0.5rem 2rem;
   border-bottom: 1px solid rgba(147, 148, 150, 0.6);
 `;
 
