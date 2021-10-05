@@ -20,7 +20,6 @@ const TrendingMovieData = (data) => {
   } else {
     ModifiedData = [{ error: "No Results" }];
   }
-  console.log(ModifiedData);
   return ModifiedData;
 };
 

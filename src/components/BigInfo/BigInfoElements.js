@@ -54,6 +54,10 @@ export const Container = styled.div`
     animation: ${Entrance} 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
     animation-delay: 0.7s;
   }
+  @media screen and (max-width: 480px) {
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+  }
 `;
 
 export const Wrapper = styled.div`
@@ -66,30 +70,54 @@ export const Wrapper = styled.div`
   padding-left: 6rem;
   width: 100%;
   height: 100%;
+  @media screen and (max-width: 480px) {
+    padding-left: 0;
+  }
 `;
 
 export const Rating = styled.div`
   margin: 0 1em;
   line-height: 1rem;
   vertical-align: center;
+  @media screen and (max-width: 480px) {
+    width: 100%;
+    text-align: center;
+  }
 `;
 
 export const Popularity = styled.p`
   font-weight: 600;
   font-size: 1.2rem;
   color: gold;
+  @media screen and (max-width: 480px) {
+    width: 100%;
+    text-align: center;
+  }
 `;
 
 export const Title = styled.h1`
   width: 50%;
   font-size: 3.5rem;
   color: ${PrimaryColor};
+  @media screen and (max-width: 480px) {
+    width: 100%;
+    text-align: center;
+  }
 `;
-export const InfoGenres = styled(Genre)``;
+export const InfoGenres = styled(Genre)`
+  @media screen and (max-width: 480px) {
+    display: flex;
+  }
+`;
 
 export const InfoGenreItem = styled(GenreItem)`
   color: gold;
+
+  @media screen and (max-width: 480px) {
+    font-size: 2rem;
+  }
 `;
+
 export const Release = styled.div`
   font-weight: 600;
   font-size: 1.2rem;
@@ -101,6 +129,12 @@ export const OverView = styled(DescriptionText)`
   text-indent: 25px;
   line-height: 2rem;
   font-size: 1.5rem;
+  @media screen and (max-width: 480px) {
+    padding: 0 2.5rem;
+    text-indent: 25px;
+    line-height: 1.5rem;
+    font-size: 1.3rem;
+  }
 `;
 
 export const VideoSection = styled.div`
@@ -128,6 +162,11 @@ export const Flex = styled.div`
   justify-content: space-between;
   display: flex;
   align-items: center;
+  @media screen and (max-width: 480px) {
+    justify-content: center;
+    max-width: 100%;
+    height: 20%;
+  }
 `;
 
 export const CloseButton = styled.button`
@@ -176,5 +215,11 @@ export const Button = styled(FaPlay)`
   &:hover {
     color: ${PrimaryColor};
     animation: ${Rotation} 0.5s forwards;
+  }
+
+  @media screen and (max-width: 480px) {
+    width: 10vw;
+    height: 10vw;
+    margin-left: 1rem;
   }
 `;

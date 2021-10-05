@@ -10,8 +10,8 @@ export const Info = styled.div`
   width: 100%;
   top: 20%;
   left: 50%;
-  opacity: 0;
   transform: translate(-50%, -50%);
+  opacity: 0;
   transition: all 0.3s ease-in-out 0s;
 `;
 
@@ -26,6 +26,7 @@ export const Overlay = styled.div`
   right: 0;
   opacity: 0;
   transition: all 0.4s ease-in-out 0s;
+
   @media screen and (max-width: 480px) {
     width: 100%;
   }
@@ -33,22 +34,25 @@ export const Overlay = styled.div`
 
 export const Card = styled.div`
   position: relative;
-  width: 275px;
-  height: 380px;
+  width: 18.75rem;
+  height: 25rem;
   background-image: url(${({ url }) => url});
   background-size: 100% 100%;
   background-repeat: no-repeat;
+
   &:hover > ${Info} {
     top: 50%;
     left: 50%;
     opacity: 1;
   }
+
   &:hover > ${Overlay} {
     opacity: 1;
   }
+
   @media screen and (max-width: 480px) {
-    width: 130px;
-    height: 200px;
+    width: 7.5rem;
+    height: 13.5rem;
   }
 `;
 
@@ -59,13 +63,18 @@ export const Title = styled.h1`
   letter-spacing: 0.15em;
   margin-bottom: 0.5em;
   text-transform: uppercase;
+
   @media screen and (max-width: 480px) {
     font-size: 0.7rem;
     letter-spacing: 0.05em;
   }
 `;
 
-export const Rating = styled.div``;
+export const Rating = styled.div`
+  @media screen and (max-width: 480px) {
+    margin-bottom: 0.5rem;
+  }
+`;
 
 export const WatchTrailer = styled.button`
   margin: 1rem;
@@ -76,6 +85,9 @@ export const WatchTrailer = styled.button`
   border: 2.5px solid ${PrimaryColor};
   color: white;
   cursor: pointer;
+  @media screen and (max-width: 480px) {
+    margin: 0rem;
+  }
 `;
 
 export const SelectionWrapper = styled.div`
@@ -83,6 +95,11 @@ export const SelectionWrapper = styled.div`
   align-items: center;
   justify-content: center;
   width: 100%;
+  @media screen and (max-width: 480px) {
+    width: 100%;
+    height: 20%;
+    flex-direction: column;
+  }
 `;
 
 export const MoreInfo = styled(Link)`
@@ -97,4 +114,7 @@ export const MoreInfo = styled(Link)`
   border: 2.5px solid ${PrimaryColor};
   color: white;
   cursor: pointer;
+  @media screen and (max-width: 480px) {
+    margin: 0.5rem;
+  }
 `;

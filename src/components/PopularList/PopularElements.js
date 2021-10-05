@@ -10,7 +10,6 @@ export const Title = styled.p`
   border-top: 1px solid rgba(147, 148, 150, 0.6);
   padding: 0.5rem 0;
   @media screen and (max-width: 480px) {
-    text-align: left;
-    margin-left: 1.5rem;
+    text-align: center;
   }
 `;

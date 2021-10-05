@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import GridCardElements from "./GridCard";
 import { GridWrapper, GridContainer } from "./GridElements";
 import LoaderSpinner from "../../components/Loading/LoaderSpinner";
@@ -6,6 +6,12 @@ import { useSelector } from "react-redux";
 
 const Grid = ({ data }) => {
   const loading = useSelector((state) => state.global.loading);
+
+  useEffect(() => {
+    window.addEventListener("resize", () => {
+      console.log(window.innerWidth);
+    });
+  }, []);
 
   return (
     <>

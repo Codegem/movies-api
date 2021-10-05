@@ -20,16 +20,10 @@ const Home = () => {
       {loading ? (
         <LoaderSpinner />
       ) : (
-        <div style={{ marginTop: "3rem" }}>
+        <>
           <PopularSection data={popularMoviesList} title="Popular Movies" />
-          <div
-            id="movies"
-            style={{
-              marginBottom: window.innerWidth <= 480 ? "40rem" : "50rem",
-            }}
-          />
           <PopularSection data={popularTVList} title="Popular TV Shows " />
-        </div>
+        </>
       )}
     </>
   );

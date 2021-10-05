@@ -51,7 +51,7 @@ export const MovieTitle = styled.h1`
   width: 80%;
   @media screen and (max-width: 480px) {
     font-size: 2.5rem;
-    max-width: 100%;
+    width: 90vw;
   }
 `;
 
@@ -123,7 +123,8 @@ export const DescriptionText = styled.p`
   line-height: 2.1rem;
   @media screen and (max-width: 480px) {
     text-indent: 1rem;
-    width: 95%;
+    font-size: 1.1rem;
+    width: 100%;
     margin-top: 2rem;
   }
 `;
