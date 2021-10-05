@@ -5,7 +5,7 @@ export const SEARCH_MOVIE = {
 
 export const GET_GENRES = {
   typeStr: "GET_GENRES",
-  axiosUrl: `/genre/movie/list`,
+  axiosUrl: `/genre`,
 };
 
 export const GET_TRENDING_MOVIE = {
@@ -33,25 +33,12 @@ export const GET_MOVIES_POPULAR = {
   axiosUrl: `/movie/popular`,
 };
 
-export const GET_MOVIE_VIDEO = {
-  typeStr: "GET_MOVIE_VIDEO",
-  axiosUrl: `/movie`,
-};
-
-export const GET_TVSHOW_VIDEO = {
-  typeStr: "GET_TVSHOW_VIDEO",
-  axiosUrl: `/tv`,
+export const GET_VIDEO_TRAILER = {
+  typeStr: "GET_VIDEO_TRAILER",
+  axiosUrl: ``,
 };
 
 export const GET_INFO = {
   typeStr: "GET_INFO",
   axiosUrl: ``,
-};
-
-export const ERROR = {
-  typeStr: "ERROR",
-};
-
-export const LOADING = {
-  typeStr: "LOADING",
 };

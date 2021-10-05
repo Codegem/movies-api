@@ -1,8 +1,9 @@
-import { useEffect } from "react";
 import YouTube from "react-youtube";
 import Modal from "react-modal";
-import { useDispatch, useSelector } from "react-redux";
-import { movieTrailer, tvshowTrailer } from "../../redux/actions/movieActions";
+import { useSelector } from "react-redux";
+import useDispatcher from "../../helpers/dispatch";
+import { VideoTrailer } from "../../redux/actions/movieActions";
+import LoadingAnimation from "../Loading";
 
 const customStyles = {
   content: {
@@ -12,7 +13,7 @@ const customStyles = {
     bottom: "auto",
     marginRight: "-50%",
     transform: "translate(-50%, -50%)",
-    background: "black",
+    background: "none",
     border: "none",
   },
   overlay: {
@@ -23,14 +24,6 @@ const customStyles = {
 };
 
 const VideoModal = ({ toggle, open, data }) => {
-  const dispatch = useDispatch();
-
-  const trailer = useSelector((state) =>
-    data.media_type === "movie"
-      ? state.movies.movieTrailer.results
-      : state.movies.tvshowTrailer.results
-  );
-
   const opts = {
     height: window.innerWidth <= 480 ? window.innerHeight - 100 : "600",
     width: window.innerWidth <= 480 ? window.innerWidth - 50 : "800",
@@ -39,16 +32,9 @@ const VideoModal = ({ toggle, open, data }) => {
     },
   };
 
-  useEffect(() => {
-    if (data !== undefined) {
-      dispatch(
-        data.media_type === "movie"
-          ? movieTrailer(data.id, "/videos")
-          : tvshowTrailer(data.id, "/videos")
-      );
-      return;
-    }
-  }, []);
+  useDispatcher(VideoTrailer, `${data.mediaType}/${data.id}`, true, true);
+  const trailer = useSelector((state) => state.movies.videoTrailer);
+  const loading = useSelector((state) => state.global.modalLoader);
 
   return (
     <Modal
@@ -57,11 +43,10 @@ const VideoModal = ({ toggle, open, data }) => {
       style={customStyles}
       ariaHideApp={false}
     >
-      {trailer !== undefined && (
-        <YouTube
-          videoId={trailer[0].key !== undefined && trailer[0].key}
-          opts={opts}
-        />
+      {loading ? (
+        <LoadingAnimation />
+      ) : (
+        trailer !== null && <YouTube videoId={trailer[0].key} opts={opts} />
       )}
     </Modal>
   );

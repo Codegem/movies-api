@@ -5,8 +5,8 @@ import {
   LoadingBody,
   LoadingTop,
   LoadingMid,
-  Sripe,
-  SripeBottom,
+  Stripe,
+  StripeBottom,
   LoadingText,
 } from "./LoadingElements";
 
@@ -14,15 +14,15 @@ const Loading = () => {
   return (
     <LoadingWrapper>
       <LoadingCutter>
-        <Sripe />
-        <Sripe />
-        <Sripe />
+        <Stripe />
+        <Stripe />
+        <Stripe />
       </LoadingCutter>
       <LoadingBody>
         <LoadingTop>
-          <SripeBottom />
-          <SripeBottom />
-          <SripeBottom />
+          <StripeBottom />
+          <StripeBottom />
+          <StripeBottom />
         </LoadingTop>
         <LoadingMid>
           <LoadingText>Loading...</LoadingText>

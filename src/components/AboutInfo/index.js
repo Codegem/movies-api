@@ -1,12 +1,8 @@
-import React, { useEffect } from "react";
+import React from "react";
 import Modal from "react-modal";
 import YouTube from "react-youtube";
-import { useDispatch, useSelector } from "react-redux";
-import {
-  movieTrailer,
-  getMediaInfo,
-  tvshowTrailer,
-} from "../../redux/actions/movieActions";
+import { useSelector } from "react-redux";
+import { getMediaInfo } from "../../redux/actions/movieActions";
 import {
   ButtonWrapper,
   Description,
@@ -18,9 +14,8 @@ import {
   VideoWrapper,
   GenreItem,
 } from "./InfoElements";
-import Star from "../../helpers/stars/Stars";
-import { useState } from "react";
-import Loading from "../Loading";
+import LoadingAnimation from "../Loading";
+import useDispatcher from "../../helpers/dispatch";
 
 const customStyles = {
   content: {
@@ -33,7 +28,7 @@ const customStyles = {
     bottom: "auto",
     marginRight: "-50%",
     transform: "translate(-50%, -50%)",
-    background: "rgba(0, 0, 0, 0)",
+    background: "none",
     backdropFilter: "blur(0)",
     border: "none",
     display: "flex",
@@ -48,37 +43,12 @@ const customStyles = {
   },
 };
 
-const About = ({ data, id, open, toggle }) => {
-  const dispatch = useDispatch();
-  const { getRating } = Star();
-  const [loading, setLoading] = useState(false);
+const About = ({ open, toggle, data, mediaType }) => {
+  console.log(data, mediaType);
+  useDispatcher(getMediaInfo, `${mediaType}/${data}`, true, true);
 
-  const type = data !== undefined && data.name === undefined ? "movie" : "tv";
-
-  useEffect(() => {
-    if (type === "tv") {
-      dispatch(getMediaInfo("tv", id));
-      dispatch(tvshowTrailer(id, "/videos"));
-      setLoading(true);
-    } else {
-      dispatch(getMediaInfo("movie", id));
-      dispatch(movieTrailer(id, "/videos"));
-      setLoading(true);
-    }
-  }, []);
-
-  const aboutMovie = useSelector((state) => state.movies.mediaInfo);
-  const officialTrailer = useSelector(
-    type === "tv"
-      ? (state) => state.movies.tvshowTrailer.results
-      : (state) => state.movies.movieTrailer.results
-  );
-
-  if (aboutMovie !== undefined && officialTrailer !== undefined) {
-    setTimeout(function () {
-      setLoading(false);
-    }, 1200);
-  }
+  const info = useSelector((state) => state.movies.mediaInfo);
+  const loading = useSelector((state) => state.global.modalLoader);
 
   const opts =
     window.innerWidth <= 480
@@ -96,6 +66,7 @@ const About = ({ data, id, open, toggle }) => {
             autoplay: 1,
           },
         };
+
   return (
     <Modal
       isOpen={open}
@@ -104,34 +75,27 @@ const About = ({ data, id, open, toggle }) => {
       ariaHideApp={false}
     >
       {loading ? (
-        <Loading />
+        <LoadingAnimation />
       ) : (
         <>
           <VideoWrapper>
-            <YouTube
-              videoId={
-                officialTrailer !== undefined ? officialTrailer[0].key : ""
-              }
-              opts={opts}
-            />
+            <YouTube videoId={info?.key} opts={opts} />
           </VideoWrapper>
           <Description>
-            <DescriptionText>{aboutMovie.overview}</DescriptionText>
+            <DescriptionText>{info?.overview}</DescriptionText>
           </Description>
           <Rating>
-            <span>{aboutMovie.vote_average}</span>
-            {getRating(aboutMovie.vote_average, "25px", "5px")}
+            <span>{info?.vote_average}</span>
+            {info?.rating}
           </Rating>
           <Genres>
-            {aboutMovie.genres !== undefined &&
-              aboutMovie.genres.map((genre) => {
-                return <GenreItem key={genre.id}>{genre.name}</GenreItem>;
+            {info?.genres !== undefined &&
+              info?.genres.map((genre) => {
+                return <GenreItem key={genre?.id}>{genre?.name}</GenreItem>;
               })}
           </Genres>
           <ButtonWrapper>
-            <OfficialSite href={aboutMovie.homepage}>
-              Visit Official
-            </OfficialSite>
+            <OfficialSite href={info?.homepage}>Visit Official</OfficialSite>
             <Favorite>Favorite</Favorite>
           </ButtonWrapper>
         </>

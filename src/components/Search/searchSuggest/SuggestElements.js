@@ -1,5 +1,6 @@
 import styled, { keyframes } from "styled-components";
 import { PrimaryColor } from "../../GlobalElements";
+import { Link } from "react-router-dom";
 
 const SuggestAnimation = keyframes`
  0% {
@@ -29,7 +30,7 @@ export const SearchSuggestions = styled.div`
   }
 `;
 
-export const MovieSuggestion = styled.div`
+export const MovieSuggestion = styled(Link)`
   width: 90%;
   height: 100%;
   margin-bottom: 1rem;

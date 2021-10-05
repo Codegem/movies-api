@@ -1,17 +1,18 @@
 import * as type from "../action-types/movieActionTypes";
+import ShowData from "../../helpers/dataHandlers/ShowData";
+import MovieData from "../../helpers/dataHandlers/MovieData";
+import DetailedData from "../../helpers/dataHandlers/DetailedData";
 
 const initialState = {
-  loading: false,
-  error: null,
   trendingMovieList: {},
-  searchMovieResults: {},
+  searchMovieResults: null,
   trendingTvShowsList: {},
   popularTvShows: {},
   popularMovies: {},
-  movieTrailer: {},
-  tvshowTrailer: {},
+  videoTrailer: null,
   upcomingMovie: {},
-  mediaInfo: {},
+  mediaInfo: null,
+  genres: null,
 };
 
 export const trendingMovieReducer = (state = initialState, action) => {
@@ -19,67 +20,55 @@ export const trendingMovieReducer = (state = initialState, action) => {
     case type.GET_TRENDING_MOVIE.typeStr: {
       return {
         ...state,
-        trendingMovieList: action.payload,
+        trendingMovieList: MovieData(action.payload.results),
       };
     }
     case type.SEARCH_MOVIE.typeStr: {
       return {
         ...state,
-        searchMovieResults: action.payload,
+        searchMovieResults: MovieData(action.payload.results),
+      };
+    }
+    case type.GET_GENRES.typeStr: {
+      return {
+        ...state,
+        genres: action.payload,
       };
     }
     case type.GET_TRENDING_TVSHOWS.typeStr: {
       return {
         ...state,
-        trendingTvShowsList: action.payload,
+        trendingTvShowsList: ShowData(action.payload.results),
       };
     }
     case type.GET_TVSHOWS_POPULAR.typeStr: {
       return {
         ...state,
-        popularTvShows: action.payload,
+        popularTvShows: ShowData(action.payload.results),
       };
     }
     case type.GET_MOVIES_POPULAR.typeStr: {
       return {
         ...state,
-        popularMovies: action.payload,
+        popularMovies: MovieData(action.payload.results),
       };
     }
-    case type.GET_MOVIE_VIDEO.typeStr: {
+    case type.GET_VIDEO_TRAILER.typeStr: {
       return {
         ...state,
-        movieTrailer: action.payload,
-      };
-    }
-    case type.GET_TVSHOW_VIDEO.typeStr: {
-      return {
-        ...state,
-        tvshowTrailer: action.payload,
+        videoTrailer: action.payload.results,
       };
     }
     case type.GET_UPCOMING_MOVIE.typeStr: {
       return {
         ...state,
-        upcomingMovie: action.payload,
+        upcomingMovie: MovieData(action.payload.results),
       };
     }
     case type.GET_INFO.typeStr: {
       return {
         ...state,
-        mediaInfo: action.payload,
-      };
-    }
-    case type.ERROR: {
-      return {
-        ...state,
-        error: action.payload,
-      };
-    }
-    case type.LOADING: {
-      return {
-        ...state,
-        loading: action.payload,
+        mediaInfo: DetailedData(action.payload),
       };
     }
     default:

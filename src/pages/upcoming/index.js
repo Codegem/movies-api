@@ -1,23 +1,20 @@
-import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React from "react";
+import { useSelector } from "react-redux";
 import Grid from "../../components/Grid";
 import { upcomingMovies } from "../../redux/actions/movieActions";
+import useDispatcher from "../../helpers/dispatch";
 
 const Upcoming = () => {
-  const dispatch = useDispatch();
+  useDispatcher(upcomingMovies, undefined, true);
 
-  const upcomingList = useSelector(
-    (state) => state.movies.upcomingMovie.results
-  );
-
-  useEffect(() => {
-    dispatch(upcomingMovies);
-  }, []);
+  const upcomingList = useSelector((state) => state.movies.upcomingMovie);
 
   return (
-    <div style={{ marginTop: "5rem" }}>
-      <Grid data={upcomingList} />;
-    </div>
+    <>
+      <div style={{ marginTop: "5rem" }}>
+        <Grid data={upcomingList} />;
+      </div>
+    </>
   );
 };
 

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import {
   Card,
   Info,
@@ -7,36 +7,33 @@ import {
   Rating,
   MoreInfo,
 } from "./GridCardElements";
-import { ImageJoin } from "../../../helpers/image/Image";
-import Star from "../../../helpers/stars/Stars";
 import About from "../../AboutInfo";
 
 const GridCardElements = ({ data }) => {
-  const { getRating } = Star();
+  const [openAbout, setopenAbout] = useState(false);
 
-  const [openAbout, setOpenAbout] = useState(false);
-
-  const aboutToggle = () => {
-    setOpenAbout(!openAbout);
+  const ModalToggle = () => {
+    setopenAbout(!openAbout);
   };
 
   return (
     <>
-      <Card
-        url={ImageJoin(
-          data.poster_path !== null ? data.poster_path : data.backdrop_path
-        )}
-      >
+      <Card url={data.poster}>
         <Overlay />
         <Info>
-          <Title>{data.original_title || data.name}</Title>
-          <Rating>{getRating(data.vote_average, "15", "8")}</Rating>
-          <MoreInfo onClick={aboutToggle}>More Info</MoreInfo>
+          <Title>{data.name}</Title>
+          <Rating>{data.rating}</Rating>
+          <MoreInfo onClick={ModalToggle}>More Info</MoreInfo>
         </Info>
+        {openAbout && (
+          <About
+            open={openAbout}
+            toggle={ModalToggle}
+            data={data.id}
+            mediaType={data.mediaType}
+          />
+        )}
       </Card>
-      {openAbout && (
-        <About id={data.id} toggle={aboutToggle} open={openAbout} data={data} />
-      )}
     </>
   );
 };

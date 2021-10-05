@@ -1,5 +1,4 @@
-import React, { useState } from "react";
-import { ImageJoin } from "../../helpers/image/Image";
+import React from "react";
 import {
   MovieImage,
   AboutMovie,
@@ -15,62 +14,66 @@ import {
   ButtonWrapper,
   AboutMovieWrapper,
   Overlay,
+  DesktopOverlay,
 } from "./ActiveElements";
-import useMovies from "../../hooks/getMovies";
-import Star from "../../helpers/stars/Stars";
 import VideoModal from "../Modal";
+import { useDispatch, useSelector } from "react-redux";
+import { ModalToggle } from "../../redux/actions/globalActions";
+import GenresData from "../../helpers/dataHandlers/GenresData";
 
-const ActiveMovie = ({ activeData, children }) => {
-  const backgroundImg = ImageJoin(activeData.backdrop_path);
-  const { genre } = useMovies();
-  const { getRating } = Star();
+const ActiveMovie = ({ children, data }) => {
+  const dispatch = useDispatch();
 
-  const [modalIsOpen, setIsOpen] = useState(false);
+  const modalState = useSelector((state) => state.global.modalOpen);
+  const activeData = useSelector((state) => state.global.activeData);
 
   const modalToggle = () => {
-    setIsOpen(!modalIsOpen);
+    dispatch(ModalToggle);
+  };
+
+  const mouseEnter = () => {
+    document.getElementById("Overlay").style.opacity = "1";
+  };
+  const mouseLeave = () => {
+    document.getElementById("Overlay").style.opacity = "0";
   };
 
   return (
     <>
       <Overlay />
-      <MovieImage src={backgroundImg}>{children}</MovieImage>
-      <AboutMovieWrapper>
+      <DesktopOverlay id="Overlay" />
+      <MovieImage src={activeData?.backdrop || data?.backdrop}>
+        {children}
+      </MovieImage>
+      <AboutMovieWrapper
+        onMouseEnter={() => mouseEnter()}
+        onMouseLeave={() => mouseLeave()}
+      >
         <AboutMovie>
-          <MovieTitle>
-            {activeData.original_title !== undefined
-              ? activeData.original_title
-              : activeData.name}
-          </MovieTitle>
-          <Vote>
-            {getRating(activeData.vote_average, "20px", "2px")}
-            {activeData.vote_average}
-          </Vote>
+          <MovieTitle>{activeData?.name}</MovieTitle>
+          <Vote>{activeData?.rating}</Vote>
           <Genre>
-            {genre !== null &&
-              genre.map((g) => {
-                return activeData.genre_ids.map((g2, key) => {
-                  return (
-                    g.id === g2 && <GenreItem key={key}>{g.name}</GenreItem>
-                  );
-                });
-              })}
+            {GenresData(activeData.genres).map((genre, index) => {
+              return <GenreItem key={index}>{genre}</GenreItem>;
+            })}
           </Genre>
-          <ButtonWrapper>
-            <ButtonPlay onClick={modalToggle}>
-              <PlayIcon />
-            </ButtonPlay>
-            <ButtonFavorite>
-              <FavoriteIcon />
-            </ButtonFavorite>
-          </ButtonWrapper>
+          {data === undefined && (
+            <ButtonWrapper>
+              <ButtonPlay onClick={modalToggle}>
+                <PlayIcon />
+              </ButtonPlay>
+              <ButtonFavorite>
+                <FavoriteIcon />
+              </ButtonFavorite>
+            </ButtonWrapper>
+          )}
           <DescriptionText>
-            {activeData.overview.slice(0, 150)}...
+            {activeData?.overview?.slice(0, 150)}
           </DescriptionText>
         </AboutMovie>
       </AboutMovieWrapper>
-      {modalIsOpen && (
-        <VideoModal open={modalIsOpen} toggle={modalToggle} data={activeData} />
+      {modalState && (
+        <VideoModal open={modalState} toggle={modalToggle} data={activeData} />
       )}
     </>
   );

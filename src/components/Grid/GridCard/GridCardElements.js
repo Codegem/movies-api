@@ -18,7 +18,7 @@ export const Overlay = styled.div`
   background: rgba(0, 0, 0, 0.7);
   position: absolute;
   height: 100%;
-  width: 90.5%;
+  width: 100%;
   left: 0;
   top: 0;
   bottom: 0;
@@ -32,10 +32,10 @@ export const Overlay = styled.div`
 
 export const Card = styled.div`
   position: relative;
-  width: 280px;
+  width: 275px;
   height: 380px;
   background-image: url(${({ url }) => url});
-  background-size: contain;
+  background-size: 100% 100%;
   background-repeat: no-repeat;
   &:hover > ${Info} {
     top: 50%;

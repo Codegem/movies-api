@@ -4,32 +4,41 @@ import {
   SuggestImage,
   SuggestRating,
   SuggestTitle,
-  NoResults,
 } from "./SuggestElements";
-import Star from "../../../helpers/stars/Stars";
-import { ImageJoin } from "../../../helpers/image/Image";
+import { useDispatch, useSelector } from "react-redux";
+import { useParams, useLocation } from "react-router";
+import { SearchToggle } from "../../../redux/actions/globalActions";
+import { getMediaInfo } from "../../../redux/actions/movieActions";
 
-const Suggestions = ({ query, data }) => {
-  const { getRating } = Star();
+const Suggestions = ({ query }) => {
+  const dispatch = useDispatch();
+  const searchMovie = useSelector((state) => state.movies.searchMovieResults);
+  const location = useLocation();
+  const selectHandler = (type, id) => {
+    dispatch(SearchToggle);
+    if (location.pathname.slice(0, 17) === "/movies-api/about") {
+      dispatch(getMediaInfo(`${type}/${id}`));
+    }
+  };
 
   return (
-    <SearchSuggestions className={query.trim() >= 1 && "open"}>
-      {data !== undefined &&
-        data.slice(0, 5).map((movie, key) => {
-          if (movie.length === 0) {
-            console.log("not");
-          }
+    <>
+      <SearchSuggestions className={query.trim() >= 1 && "open"}>
+        {searchMovie?.slice(0, 5).map((movie, key) => {
           return (
-            <MovieSuggestion key={key}>
-              <SuggestTitle>{movie.title}</SuggestTitle>
-              <SuggestRating>
-                {getRating(movie.vote_average, "10px", "1px")}
-              </SuggestRating>
-              <SuggestImage src={ImageJoin(movie.poster_path)} />
+            <MovieSuggestion
+              key={key}
+              to={`/movies-api/about/${movie.mediaType}/${movie.id}`}
+              onClick={() => selectHandler(movie.mediaType, movie.id)}
+            >
+              <SuggestTitle>{movie.name}</SuggestTitle>
+              <SuggestRating>{movie.rating}</SuggestRating>
+              <SuggestImage src={movie.poster} />
             </MovieSuggestion>
           );
         })}
-    </SearchSuggestions>
+      </SearchSuggestions>
+    </>
   );
 };
 

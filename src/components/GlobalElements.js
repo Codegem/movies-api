@@ -1,5 +1,14 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import { createGlobalStyle } from "styled-components";
+
+const LoaderSpin = keyframes`
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+`;
 
 export const PrimaryColor = "rgb(32, 199, 178)";
 
@@ -29,4 +38,28 @@ export const ButtonStyle = styled.button`
   height: 3rem;
   background: ${PrimaryColor};
   border: none;
+`;
+
+export const LoaderPosition = styled.div`
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const Loader = styled.div`
+  background: none;
+  &::after {
+    content: "";
+    display: block;
+    width: 40px;
+    height: 40px;
+    border-style: solid;
+    border-color: red;
+    border-top-color: transparent;
+    border-width: 4px;
+    border-radius: 50%;
+    animation: ${LoaderSpin} 0.8s linear infinite;
+  }
 `;
